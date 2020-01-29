@@ -3,6 +3,7 @@
     <head>
         <title>Forum index</title>
         <link rel="stylesheet" href="index.css">
+        <link rel="shortcut icon" type="image/png" href="Images/animeicon2.ico">
         <meta charset="UTF-8">
     </head>
     <body>

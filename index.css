@@ -50,14 +50,6 @@ header img{
     width: 100%;
 }
 
-main{
-    height: 1000px;
-    width: 70%;
-    margin-left: 15%;
-    background-color: rgba(255, 255, 255, 0.975);
-    border: 2px solid black;
-    margin-top: 2%;
-}
 
 nav{
     background-color: rgba(255, 255, 255, 0.925);
@@ -76,6 +68,45 @@ nav{
     font-weight: bold;
 }
 
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+
+main{
+    height: 1000px;
+    width: 70%;
+    margin-left: 15%;
+    background-color: rgba(255, 255, 255, 0.975);
+    border: 2px solid black;
+    margin-top: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: smaller;
+}
+
+#welcomesection{
+    display: flex;
+    flex-direction: column;
+}
+
+#welcomeh1{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 50px;
+    margin:0;
+    text-align: center;
+}
+
+#welcomeyuno{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#welcomeyuno2{
+    width: 50%;
+}
+
 #reglesmainsection{
     margin:1%
 }
@@ -86,6 +117,7 @@ nav{
     background-color: rgb(49, 49, 49);
     color: white;
     border: 0.5px solid black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #endessousdutitreflex{
@@ -125,3 +157,177 @@ nav{
     vertical-align: middle;
 }
 
+.toastpoussage{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.toastpoussage2{
+    margin-bottom: 2px;
+    margin-top: 2px;
+    margin-left: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(172, 172, 172);
+    width: 12%;
+}
+
+.toastpoussage2{
+    padding-bottom: 0.5;
+}
+
+.toastpoussage5{
+    margin-left: 2px;
+    padding-right: 12.2%;
+    padding-left: 12.2%;
+    width: 100%;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
+    display:flex;
+    text-align:center;
+    margin-top: 2px;
+    background-color:rgba(223, 223, 223, 0.527);
+    height: 38.9px;
+    max-width: 75%;
+}
+
+.toastpoussage4{
+    width: 28%;
+}
+
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+
+#discussionsmainsection{
+    margin:1%
+}
+
+#discussionsh1{
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: rgb(49, 49, 49);
+    color: white;
+    border: 0.5px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#endessousdutitreflex{
+    display: flex;
+    flex-direction: row;
+    /*border-left: 1.5px solid rgb(155, 155, 155);
+    border-bottom: 1.5px solid rgb(155, 155, 155);
+    border-right: 1.5px solid rgb(155, 155, 155);*/
+    vertical-align: middle;
+}
+
+#topicicon{
+    margin:0;
+    margin-right: 0;
+    margin-bottom: -5px;
+    margin-top: 2px;
+    padding: 0;
+    width: 60px;
+}
+
+#topicicon img{
+    width: 100%;
+    background-color: rgb(172, 172, 172);
+    padding: 3%;
+    margin-top: 0;
+    margin-right: 0;   
+}
+
+#topicflex1{
+    flex-direction: column;
+    padding-left: 0;
+    margin-left: 6px;
+    background-color: rgba(223, 223, 223, 0.527);
+    margin-top: 2px;
+    height: 52.9px;
+    width: 60%;
+    vertical-align: middle;
+}
+
+.toastpoussage{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.toastpoussage2{
+    margin-bottom: 2px;
+    margin-top: 2px;
+    margin-left: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(172, 172, 172);
+    width: 12%;
+}
+
+.toastpoussage2{
+    padding-bottom: 0.5;
+}
+
+.toastpoussage5{
+    margin-left: 2px;
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
+    display:flex;
+    text-align:center;
+    margin-top: 2px;
+    background-color:rgba(223, 223, 223, 0.527);
+}
+
+.toastpoussage4{
+    width: 28%;
+}
+
+
+/*//////////////PARTIE INFOS///////*/
+
+#infosmainsection{
+    display: flex;
+    flex-direction: row;
+}
+
+#infosh1{
+    margin-top: 15px;
+    margin-bottom: 0;
+    background-color: rgb(49, 49, 49);
+    color: white;
+    border: 0.5px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#informationsectionflex{
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+#infosarticle{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 0.3%;
+    padding-top: 15%;
+    background-color:rgba(223, 223, 223, 0.527);
+    height: 50%;
+}
+
+#imageenbas{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6.1%;
+}
+
+#imageenbas img{
+    width:70%;
+}
