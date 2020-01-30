@@ -99,7 +99,6 @@ nav{
 #homebutton{
     width: 45px;
     margin-top:2.32px;
-    /*margin-left: 45%;*/
 }
 
 .lia{
@@ -131,12 +130,19 @@ nav{
 #imglogout{
     width: 28px;
     height: 28px;
-    /*border: 2px solid rgb(54, 54, 54);
-    border-radius:50% 50% 50% 50%;
-    padding:3px;*/
     transition: all 0.5s ease-out;
 }
 
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
+/*///////////////////////////////////CSS FORUM TOPIC ETC*/
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
@@ -193,9 +199,6 @@ main{
 #endessousdutitreflex{
     display: flex;
     flex-direction: row;
-    /*border-left: 1.5px solid rgb(155, 155, 155);
-    border-bottom: 1.5px solid rgb(155, 155, 155);
-    border-right: 1.5px solid rgb(155, 155, 155);*/
     vertical-align: middle;
 }
 
@@ -273,6 +276,21 @@ main{
 /*///PARTIE FORUM ANIME/////////////////*/
 /*///PARTIE FORUM ANIME/////////////////*/
 /*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
+/*///PARTIE FORUM ANIME/////////////////*/
 
 #discussionsmainsection{
     margin:1%
@@ -290,9 +308,6 @@ main{
 #endessousdutitreflex{
     display: flex;
     flex-direction: row;
-    /*border-left: 1.5px solid rgb(155, 155, 155);
-    border-bottom: 1.5px solid rgb(155, 155, 155);
-    border-right: 1.5px solid rgb(155, 155, 155);*/
     vertical-align: middle;
 }
 
@@ -366,6 +381,21 @@ main{
 /*//////////////PARTIE INFOS///////*/
 /*//////////////PARTIE INFOS///////*/
 /*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
 
 #infosmainsection{
     display: flex;
@@ -416,11 +446,35 @@ main{
 /*////////////PARTIE INSCRIPTION/////////////////*/
 /*////////////PARTIE INSCRIPTION/////////////////*/
 /*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
 
 #h1inscription{
     text-align: center;
     margin-top: 3%;
-    margin-bottom: 3%;
+    margin-bottom: 15%;
     font-size: 35px;
 }
 
@@ -448,18 +502,18 @@ main{
 #inscriptionform{
     flex-direction: column;
     align-items: center;
-    margin-left: 40%;
+    margin-top: 3%;
 }
 
 .inscriptionforminput{
-    width: 20%;
+    width: 75%;
     text-align:center;
     display: flex;
     justify-content: center;
 }
 
 .inscriptionforminputsubmit{
-    width: 7%;
+    width: 50%;
     text-align:center;
     display: flex;
     justify-content: center;

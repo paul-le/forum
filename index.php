@@ -5,10 +5,10 @@
     $requetetopic = "SELECT nom,description FROM topic";
     $query = mysqli_query($connexion,$requetetopic);
     $resultat = mysqli_fetch_all($query);
-    var_dump($resultat);
     $topicscounter = count($resultat);
-    /*var_dump($topicscounter);*/
-    
+    $topicid= "SELECT id FROM topic";
+    $queryidtopic = mysqli_query($connexion,$topicid);
+    $resultatidtopic = mysqli_fetch_all($queryidtopic);
 ?>
 
 <!DOCTYPE html>
@@ -88,7 +88,7 @@
                         </section> 
                     <section id="topicflex1">
                         <section id="topicflex2">
-                            <article class="toastpoussage"><?php echo "".$resultatmeta.""; ?></article>
+                            FAUT LE CONCATENER<article class="toastpoussage"><?php echo "<a href='topic.php?id=".$resultatidtopic.">".$resultatmeta."</a>"; ?></article>
                     </section>
                     <section id="topicflex3">
                         <article>
@@ -123,5 +123,6 @@ $i++;
                         <img id="imageenbas" src="Images/animeicon.png">
                     </article>
                 </section>
+                
             </section>
         </main>

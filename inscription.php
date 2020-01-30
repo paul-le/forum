@@ -31,8 +31,7 @@
 
 			$requeteInsertUser = "INSERT INTO utilisateurs (login, password, age) VALUES('$nameLogin', '$passwordHash', '$ageUser')" ;
 			$queryInsertUser = mysqli_query($connexion, $requeteInsertUser) ;
-
-			echo $requeteInsertUser ;
+            header("Location:index.php");
 		}
 		else
 		{
@@ -53,7 +52,33 @@
         <meta charset="UTF-8">
     </head>
     <body>
-    <?php include('header.php'); ?>
+    <header>
+            <section>
+                <a href="index.php"><img src="Images/logoforumheader.png"></a>
+            </section>
+            <section>
+                <section id="coheaderflex">
+                    <?php if(isset($_SESSION['login'])){ ?>
+                    <p id="cocenter">- Vous êtes déjà connecté ! -</p>
+                    <?php } ?>
+                    </section>
+            </section>
+        </header>
+        <nav>
+            <?php if(isset($_SESSION['login'])){ ?>
+            <ul id="navul">
+                <a href="index.php" class="lia"><li class="liheader" >Accueil</li></a>
+                <a href="index.php"><img id="homebutton" img src="Images/home.png"></a>
+                <a class="lia" href="profil.php"><li class="liheader">Profil</li></a>
+            </ul>
+            <?php } else { ?>
+            <ul id="navul">
+                <a href="index.php" class="lia"><li class="liheader" >Accueil</li></a>
+                <a href="index.php"><img id="homebutton" img src="Images/home.png"></a>
+                <a class="lia" href="inscription.php"><li class="liheader">Inscription</li></a>
+            </ul>
+            <?php } ?>
+        </nav>
         <main id="inscriptionmain">
             <!-- PARTIE TOP FORUM --> 
             <!-- PARTIE TOP FORUM -->
@@ -61,6 +86,7 @@
             <!-- PARTIE TOP FORUM --> 
             <!-- PARTIE TOP FORUM --> 
             <!-- PARTIE TOP FORUM -->
+            
             <section id="inscriptionformflex">
                 <?php if(!isset($_SESSION['login'])){ ?>
             <form id="inscriptionform" method="post" action="">
@@ -79,8 +105,6 @@
                     echo"Vous êtes déjà inscrit !";
 
                     } ?>
-
-                <?php if($inscriptionImpossible == true){echo"<br><br>Identifiant déjà existant";}?>
                 </form>
                 </section>
         </main>
