@@ -36,3 +36,35 @@
 	}
 
 ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Connexion</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+       
+        <main id="mainconnexion">
+            <section id="sectionformconnexion">
+                <?php if(isset($_SESSION['login']))
+                    {
+                        echo "Vous êtes déjà connecté(e)";
+                    }
+                    else
+                    { ?>
+                <form id="connexionform" method="POST" action="connexion.php">
+                    <h1 id="h1connexion">- Connexion -</h1><br><br>
+                    <input type="text" placeholder="Identifiant" name="login" required><br><br>
+                    <input type="password" placeholder="Mot de passe" name="password" required><br><br>
+                    <input type="submit" name="connexion" value="Se connecter">                    <?php if($connexionImpossible == true)
+                            {
+                                echo "<br><br><span id=\"mauvaislogs\"> /!\  Mauvais identifiant ou mot de passe.  /!\ ";
+                            } ?>
+                    <?php } ?>
+                </form>
+            </section>
+        </main>
+        
+    </body>
+</html>
