@@ -1,3 +1,16 @@
+<?php 
+
+    session_start();
+    $connexion = mysqli_connect("localhost", "root","","forum");
+    $requetetopic = "SELECT nom,description FROM topic";
+    $query = mysqli_query($connexion,$requetetopic);
+    $resultat = mysqli_fetch_all($query);
+    var_dump($resultat);
+    $topicscounter = count($resultat);
+    /*var_dump($topicscounter);*/
+    
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,28 +19,7 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <header>
-            <section>
-                <img src="Images/logoforumheader.png">
-            </section>
-            <section>
-                <article id="coheaderflex">
-                    <p id="cocenter">- Connexion -</p>
-                    <form>
-                        <input id="connexioninput" type="text" placeholder="Identifiant" name="login" required><br><br>
-                        <input id="connexioninput" type="password" placeholder="Mot de passe" name="password" required><br><br>
-                        <input id="connexioninput" type="submit" name="connexion" value="Se connecter">       
-                    </form>
-                </article>
-            </section>
-        </header>
-        <nav>
-            <ul id="navul">
-                <li>Accueil</li>
-                <li>Inscription</li>
-                <li>Profil</li>
-            </ul>
-        </nav>
+    <?php include('header.php'); ?>
         <main>
             <!-- PARTIE TOP FORUM --> 
             <!-- PARTIE TOP FORUM -->
@@ -81,17 +73,28 @@
                 <section>
                     <h1 id="discussionsh1">&nbsp;&nbsp;Discussions</h1>
                 </section>
-                <section id="endessousdutitreflex">
-                    <section id="topicicon">
-                        <img src="Images/nonewmessage.png">
-                    </section> 
+                <?php 
+
+                    $i = 0;
+
+                    while($i != $topicscounter)
+                    {
+                        $resultatmeta = utf8_encode($resultat[$i][0]);
+                        $resultatmeta2 = utf8_encode($resultat[$i][1]);
+                    ?>
+                    <section id="endessousdutitreflex">
+                        <section id="topicicon">
+                            <img src="Images/nonewmessage.png">
+                        </section> 
                     <section id="topicflex1">
                         <section id="topicflex2">
-                            <article class="toastpoussage">Discussions</article>
-                        </section>
-                        <section id="topicflex3">
-                            <article>Parlez de tout et de rien</article>
-                        </section>
+                            <article class="toastpoussage"><?php echo "".$resultatmeta.""; ?></article>
+                    </section>
+                    <section id="topicflex3">
+                        <article>
+                            <?php echo "".$resultatmeta2."" ?>
+                        </article>
+                    </section>
                     </section>
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
@@ -103,99 +106,10 @@
                             Dernier message envoyé par Paul le 29/01/2020 à 11h34.
                         </article>
                     </section>
-                </section>
-                <section id="endessousdutitreflex">
-                    <section id="topicicon">
-                        <img src="Images/nonewmessage.png">
-                    </section> 
-                    <section id="topicflex1">
-                        <section id="topicflex2">
-                            <article class="toastpoussage">Dernières sorties Animes</article>
-                        </section>
-                        <section id="topicflex3">
-                            <article>Parlez des dernières sorties</article>
-                        </section>
                     </section>
-                    <section class="toastpoussage2">
-                        <article class="toastpoussage3">
-                            1 message<br>1 sujet
-                        </article>
-                    </section>
-                    <section class="toastpoussage4";>
-                        <article class="toastpoussage5">
-                            Dernier message envoyé par Momomomo le 29/01/2020 à 11h34.
-                        </article>
-                    </section>
-                </section>
-                <section id="endessousdutitreflex">
-                    <section id="topicicon">
-                        <img src="Images/nonewmessage.png">
-                    </section> 
-                    <section id="topicflex1">
-                        <section id="topicflex2">
-                            <article class="toastpoussage">Dernière sorties Mangas</article>
-                        </section>
-                        <section id="topicflex3">
-                            <article>Parlez des derniers scans & mangas</article>
-                        </section>
-                    </section>
-                    <section class="toastpoussage2">
-                        <article class="toastpoussage3">
-                            1 message<br>1 sujet
-                        </article>
-                    </section>
-                    <section class="toastpoussage4";>
-                        <article class="toastpoussage5">
-                            Dernier message envoyé par Paul le 29/01/2020 à 11h34.
-                        </article>
-                    </section>
-                </section>
-                <section id="endessousdutitreflex">
-                    <section id="topicicon">
-                        <img src="Images/nonewmessage.png">
-                    </section> 
-                    <section id="topicflex1">
-                        <section id="topicflex2">
-                            <article class="toastpoussage">Jeux vidéos</article>
-                        </section>
-                        <section id="topicflex3">
-                            <article>Vous cherchez des mates ou vous voulez parler de jeux c'est par ici !</article>
-                        </section>
-                    </section>
-                    <section class="toastpoussage2">
-                        <article class="toastpoussage3">
-                            1 message<br>1 sujet
-                        </article>
-                    </section>
-                    <section class="toastpoussage4";>
-                        <article class="toastpoussage5">
-                            Dernier message envoyé par Paul le 29/01/2020 à 11h34.
-                        </article>
-                    </section>
-                </section>
-                <section id="endessousdutitreflex">
-                    <section id="topicicon">
-                        <img src="Images/nonewmessage.png">
-                    </section> 
-                    <section id="topicflex1">
-                        <section id="topicflex2">
-                            <article class="toastpoussage">Musiques</article>
-                        </section>
-                        <section id="topicflex3">
-                            <article>Musiques d'animes etc ...</article>
-                        </section>
-                    </section>
-                    <section class="toastpoussage2">
-                        <article class="toastpoussage3">
-                            1 message<br>1 sujet
-                        </article>
-                    </section>
-                    <section class="toastpoussage4";>
-                        <article class="toastpoussage5">
-                            Dernier message envoyé par Paul le 29/01/2020 à 11h34.
-                        </article>
-                    </section>
-                </section>
+<?php
+$i++;
+} ?>
                 <section id="infosmainsection">
                     <section id="informationsectionflex">
                         <h1 id="infosh1">&nbsp;&nbsp;Informations</h1>
@@ -204,8 +118,9 @@
                             Il y a [CHIFFRES] messages envoyés.
                         </article>
                     </section>
-                    <article id="imageenbas">
-                        <img src="Images/animeicon.png">
+                    <article>
+                        <img id="creertopicbouton" src="Images/boutoncreertopic.png">
+                        <img id="imageenbas" src="Images/animeicon.png">
                     </article>
                 </section>
             </section>

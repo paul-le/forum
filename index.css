@@ -11,12 +11,36 @@ body{
 
 ##coheaderflex{
     display: flex;
-    flex-direction: row ;
+    flex-direction: column ;
+}
+
+#coheaderflex2{
+    display: flex;
+    flex-direction: row;
+}
+
+
+#coheaderflex3{
+    display: flex;
+    flex-direction: column;
 }
 
 form{
     display: flex;
     flex-direction: row;
+}
+
+.coinput{
+    margin-right: 5%;
+    display: flex;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+}
+
+#boutonconnexion{
+    width: 50%;
+    margin-left: 25%;
 }
 
 #connexioninput{
@@ -29,7 +53,6 @@ form{
 
 #cocenter{
     text-align: center;
-    margin-right: 18%;
     font-weight: bold;
     font-family: 'Bebas Neue', cursive;
     font-size: 40px;
@@ -50,6 +73,10 @@ header img{
     width: 100%;
 }
 
+.liheader{
+    display: flex;
+    align-items: center;
+}
 
 nav{
     background-color: rgba(255, 255, 255, 0.925);
@@ -66,6 +93,48 @@ nav{
     list-style: none;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+    margin:0;
+}
+
+#homebutton{
+    width: 45px;
+    margin-top:2.32px;
+    /*margin-left: 45%;*/
+}
+
+.lia{
+    display: flex;
+    align-items: center;
+}
+
+.lia{
+    text-decoration: none;
+    color: black;
+}
+
+.lia:active{
+    text-decoration: none;
+    color: black;
+}
+
+.lia:visited{
+    text-decoration: none;
+    color: black;
+}
+
+#imglogout:hover{
+    /*background-color: black;*/
+    transform: rotate(360deg) scale(1.5);
+    -webkit-transform: rotate(360deg) scale(1.5);
+}
+
+#imglogout{
+    width: 28px;
+    height: 28px;
+    /*border: 2px solid rgb(54, 54, 54);
+    border-radius:50% 50% 50% 50%;
+    padding:3px;*/
+    transition: all 0.5s ease-out;
 }
 
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
@@ -75,7 +144,8 @@ nav{
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
 
 main{
-    height: 1000px;
+    height: auto;
+    margin-bottom: 3%;
     width: 70%;
     margin-left: 15%;
     background-color: rgba(255, 255, 255, 0.975);
@@ -292,6 +362,10 @@ main{
 
 
 /*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
+/*//////////////PARTIE INFOS///////*/
 
 #infosmainsection{
     display: flex;
@@ -326,8 +400,67 @@ main{
     display: flex;
     justify-content: flex-end;
     margin-top: 6.1%;
+    flex-direction: column;
+    width:60%;
+    margin-left: 40%;
+    margin-bottom: -2.15%;
 }
 
-#imageenbas img{
-    width:70%;
+#creertopicbouton{
+    margin-left: 80%;
+}
+
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+/*////////////PARTIE INSCRIPTION/////////////////*/
+
+#h1inscription{
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    font-size: 35px;
+}
+
+#inscriptionformflex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#inscriptionmain{
+    height: 400px;
+    margin-bottom: 2.%;
+    width: 70%;
+    margin-left: 15%;
+    background-color: rgba(255, 255, 255, 0.975);
+    border: 2px solid black;
+    margin-top: 2%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: smaller;
+    display: flex;
+    flex-direction: column;
+}
+
+#inscriptionform{
+    flex-direction: column;
+    align-items: center;
+    margin-left: 40%;
+}
+
+.inscriptionforminput{
+    width: 20%;
+    text-align:center;
+    display: flex;
+    justify-content: center;
+}
+
+.inscriptionforminputsubmit{
+    width: 7%;
+    text-align:center;
+    display: flex;
+    justify-content: center;
 }
