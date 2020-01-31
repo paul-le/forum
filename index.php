@@ -88,7 +88,7 @@
                         </section> 
                     <section id="topicflex1">
                         <section id="topicflex2">
-                            FAUT LE CONCATENER<article class="toastpoussage"><?php echo "<a href='topic.php?id=".$resultatidtopic.">".$resultatmeta."</a>"; ?></article>
+                            <article class="toastpoussage"><a href="topic.php?id=<?php echo $resultatidtopic[$i][0];?>"><?php echo $resultatmeta;?></a></article>
                     </section>
                     <section id="topicflex3">
                         <article>
@@ -119,7 +119,7 @@ $i++;
                         </article>
                     </section>
                     <article>
-                        <img id="creertopicbouton" src="Images/boutoncreertopic.png">
+                        <a href=""><img id="creertopicbouton" src="Images/boutoncreertopic.png"></a>
                         <img id="imageenbas" src="Images/animeicon.png">
                     </article>
                 </section>
