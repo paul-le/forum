@@ -58,7 +58,7 @@
                 </form>
                     <?php }
                             } else { ?>
-                        <a href="profil.html"> Profil </a>
+                        <a href="profil.php"> Profil </a>
                         <a id="boutondeco" href="logout.php"><img id="imglogout" src="images/deconnexion.png"></a>
                     <?php } ?>
                     </section>
