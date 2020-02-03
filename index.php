@@ -119,10 +119,12 @@ $i++;
                         </article>
                     </section>
                     <article>
-                        <a href=""><img id="creertopicbouton" src="Images/boutoncreertopic.png"></a>
+                        <a href="creertopic.php"><img id="creertopicbouton" src="Images/boutoncreertopic.png"></a>
                         <img id="imageenbas" src="Images/animeicon.png">
                     </article>
                 </section>
                 
             </section>
         </main>
+        </body>
+        </html>

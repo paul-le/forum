@@ -1,6 +1,7 @@
 <?php 
 
     session_start();
+    $requeteinfosprofil = "SELECT * FROM utilisateurs WHERE '".$_SESSION['login']."'";
 
 ?>
 
@@ -34,3 +35,5 @@
             <section id="partiedroiteprofil">
             </section>
         </main>
+        </body>
+        </html>
