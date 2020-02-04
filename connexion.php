@@ -21,7 +21,7 @@
 
 		$requeteID = "SELECT id FROM utilisateurs WHERE login =\"$login\" ";
 		$qeuryID = mysqli_query($connexion, $requeteID) ;
-		$resultatID = mysqli_fetch_array($queryID) ;
+		$resultatID = mysqli_fetch_all($queryID) ;
 
 		if ($count > 0 && password_verify($_POST['password'],$resultatHash['password'])) 
 		{

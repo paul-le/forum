@@ -1,96 +1,163 @@
-<?php
+<?php 
 
-	session_start() ;
+    session_start();
 
-	$serverName = "localhost";
+    $serverName = "localhost";
     $userName = "root";
     $passwordServer = "";
     $nameTable = "forum";
 
     $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
-
-    $requeteSelectUser = "SELECT * FROM utilisateurs WHERE login = '".$_SESSION['login']."' " ;
-
-    $querySelectUser = mysqli_query($connexion, $requeteSelectUser);
-
-    $resultatSelectUser = mysqli_fetch_assoc($querySelectUser) ;
-
+    $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE login = '".$_SESSION['login']."'";
+    $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
+	$resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Profil</title>
-	<link rel="stylesheet" type="text/css" href="forum.css">
-</head>
-<body>
+    <head>
+        <title>Forum index</title>
+        <link rel="stylesheet" href="index.css">
+        <meta charset="UTF-8">
+    </head>
+    <body>
+    <?php include('header.php'); ?>
+        <main>
+            <section id="partiegaucheprofil">
+                <section id="partiegaucheprofilflex">
+                    <h1>Infos Profil</h1>
+                    <form action="" method="post" enctype="multipart/form-data">
 
-	<main>
-	<?php if (isset($_SESSION['login'])) { ?>
+                    	<?php
+                    		if (!empty($resultatInfosProfil['avatar'])) 
+                    		{ ?>
 
-		<section>
-			<form action="" method="post">
-				<h1>PROFIL</h1>
-				<label>Votre Login</label><br>
-				<input type="text" name="login" placeholder="<?php echo $resultatSelectUser['login']; ?>"><br>
+                    		<img src="avatar/<?php echo $resultatInfosProfil['avatar'] ?>" width="100" >
+                    	<?php
+                    		}
+                    	?>
+                    	<br>
+                    	<br> 
+                    	<label> Pseudo </label><br>
+	                    <input type="text" name="login" placeholder="<?php echo $resultatInfosProfil['login']; ?>"><br>
 
-				<label> Votre mot de passe </label><br>
-                <input type="password" name="password"><br>
+	                    <label> Votre mot de passe </label><br>
+	                    <input type="password" name="password"><br>
 
-                <label> Confirmez votre mot de passe </label><br>
-                <input type="password" name="confirmPassword"><br>
+	                    <label> Confirmez votre mot de passe </label><br>
+	                    <input type="password" name="passwordcon"><br>
 
-                <input type="submit" value="Modifier" name="modifier" /><br>
-			</form>
-		</section>
+	                    <label>Avatar </label><br>
+	                    <input type="file" name="avatar">
+	                            
+	                    <input type="submit" value="Modifier" name="modifier" /><br>
+                    </form>
+                    
+                </section>
+                <section>
+                    badge de profil
+                </section>
+                <section>
+                    photodeprofil
+                </section>
+                <section>
+                    description du profil
+                </section>
+                <section>
+                    role checkbox
+                </section>
+            </section>
+            <section id="partiedroiteprofil">
+            </section>
 
-	<?php } ?>
+            <?php 
 
-	<?php
-		if (isset($_POST['modifier'])) 
-		{
-			 $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
+                if(isset($_POST['modifier']))
+                {
+                    	$connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
+                        $login = $_POST['login'] ;                   
+                        $requeteLogin = "SELECT login FROM utilisateurs WHERE login = '$login'";         
+                        $queryLogin = mysqli_query($connexion, $requeteLogin);         
+                        $resultatLogin = mysqli_fetch_all($queryLogin);  
 
-			$login = $_POST['login'] ;
 
-			$requeteLogin = "SELECT login FROM utilisateurs WHERE login = \"$login\" " ;
-			$queryLogin = mysqli_query($connexion, $requeteLogin) ;
-			$resultatLogin = mysqli_fetch_all($queryLogin) ;
+                        if (!empty($_POST['login']) && $resultatLogin == $_POST['login'])             
+                        {                 
+                            echo "Ce Login est déjà prit";             
+                        }
+                        elseif ($_POST['password'] != $_POST['passwordcon']) 
+                        {
+                            echo "Les Mots de passes ne correspondent pas";
+                        }          
+                        else
+                        {
+                            
+                            if($login != $resultatInfosProfil['login'] && !empty($_POST['login']))
 
-			if (!empty($_POST['login']) && $resultatLogin == '$login') 
-			{
-				echo "Ce Login existe déja";
-			}
-			elseif ($_POST['password'] != $_POST['confirmPassword']) 
-			{
-				echo "Les mots de passes ne correspondent pas";
-			}
-			else
-			{
-				if ($_POST['login'] != $resultatLogin['login'] && !empty($_POST['login'])) 
-				{
-					 $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
-					$updateLogin = "UPDATE utilisateurs SET login =\"$login\" WHERE utilisateurs.login='".$resultatSelectUser['login']."'";
-					$queryUpdateLogin = mysqli_query($connexion, $updateLogin );
-				}
+                            {
+                                
+                               if(isset($_POST["login"]))
+                                {
+                                    $login=$_POST["login"];
+                                }
+                                
+                               $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
+                               $upLog = "UPDATE utilisateurs SET login = \"$login\" WHERE utilisateurs.login='".$resultatInfosProfil['login']."'";
+                               $result = mysqli_query($connexion, $upLog);
 
-				if ($_POST['password'] != $resultatSelectUser['password'] && !empty($_POST['password'])) 
-				{
-					$password = $_POST['password'] ;
-					$passwordHash = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12)) ;
+                            }
+                            if($_POST['password'] != $resultatInfosProfil['password'] && !empty($_POST['password']))
+                            {
+                               $password1 = $_POST['password'];
+                               $passwordhash = password_hash($password1, PASSWORD_BCRYPT, array('cost' => 12));
+                                $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
+                               $upPass = "UPDATE utilisateurs SET password = \"$passwordhash\" WHERE utilisateurs.password='".$resultatInfosProfil['password']."'";
+                               $result = mysqli_query($connexion, $upPass);
+                               
+                            }
+                        }
+                        if (isset($_FILES['avatar']) AND !empty($_FILES['avatar'])) 
+                        {
+                        	$tailleMax = 2097152 ;
+		               		$extensionsValides = $arrayName = array('jpg', 'jpeg', 'gif', 'png');
+		               		if ($_FILES['avatar']['size'] <= $tailleMax) 
+		               		{
+		               		 	$extensionsUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
+								if (in_array($extensionsUpload, $extensionsValides)) 
+								{
+									$chemin = "avatar/".$resultatInfosProfil['login'].".".$extensionsUpload;
+									echo $chemin;
+									$deplacement = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+									if ($deplacement) 
+									{
+										$updateAvatar = "UPDATE utilisateurs SET avatar = '".$resultatInfosProfil['login'].".".$extensionsUpload."' WHERE id = ".$resultatInfosProfil['id']."";
 
-					 $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
+										echo $updateAvatar;
 
-					$updatePassword = "UPDATE utilisateurs SET password = \"$passwordHash\" WHERE utilisateurs.password = '".$resultatSelectUser['password']."'" ;
-					$queryUpdatePassword = mysqli_query($connexion, $updatePassword);
-				}
-			}
-		}
+									}
+									else
+									{
+										$msg = "Erreur durant l'importation de votre photo de profil" ;
+									}
+								}
+								else
+								{
+									$msg = "Votre photo de profil doit être au format jpg, jpeg, gif ou png. ";
+								}
 
-	?>
-	</main>
+		               		}
+			               	else
+			               	{
+			               		$msg = "Votre photo de profil ne doit pas dépasser 2Mo" ;
+			               	}
+                        }
 
-</body>
+		                
+		               		 
+			                 
+                }               	
+            ?>
+        </main>
+	</body>
 </html>
