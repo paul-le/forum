@@ -10,12 +10,8 @@
     $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
 
     
-    $requeteUser = "SELECT id, login, age FROM utilisateurs";
+    $requeteUser = "SELECT * FROM utilisateurs";
     $queryUser = mysqli_query($connexion, $requeteUser) ;
-    
-
-   
-   
 
 ?>
 
@@ -37,7 +33,7 @@
 
 			<tr>
 				<td><?php echo $membre['id']; ?></td>
-				<td><a href='profil.php?id=".$membre["id"]."'><?php echo $membre['login']; ?></a></td>
+				<td><a href='profil.php?id=".$membre["id"]."'><?php echo $membre['login']; ?></td></a> 
 				<td><?php echo $membre['age']; ?></td>
 			</tr>
 		<?php } ?>
