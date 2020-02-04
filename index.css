@@ -577,3 +577,79 @@ main{
     display: flex;
     justify-content: center;
 }
+
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+/*////////////PARTIE THREAD/////////////////*/
+
+
+#threadmainsection{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid black;
+}
+
+#threadcoteprofil{
+    border-right: 2px solid black;
+    width:25%;
+}
+
+#threadsectionflex{
+    height:10%;
+    display:flex;
+    flex-direction: row;
+}
+
+#threadenvoiemessage{
+    height: 175px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2%;
+}
+
+#textareaenvoiemessage{
+    resize: none;
+    width: 200%;
+}
+
+#envoiemessagebouton{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 80%;
+    width: 100%;
+}
+
+#formenvoiemessage{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1%;
+}

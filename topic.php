@@ -5,14 +5,22 @@
         $connexion = mysqli_connect("localhost","root","","forum");
         $requetethread2 = "SELECT * FROM thread WHERE id_topic = '".$_GET['id']."'";
         $querythread2 = mysqli_query($connexion, $requetethread2);
-        $resutatthread2 = mysqli_fetch_array($querythread2);
-        $requete = "SELECT th.id_topic , th.nom , th.description , too.id , too.nom FROM thread AS th INNER JOIN topic AS too ON th.id_topic = too.id ";
+        $resultatthread2 = mysqli_fetch_array($querythread2);
+        $requete = "SELECT th.id_topic , th.nom , th.description , too.id , too.nom FROM thread AS th INNER JOIN topic AS too ON th.id_topic = too.id  WHERE id_topic = '".$_GET['id']."'";
         $queryusers = mysqli_query($connexion, $requete);
-        $resultatthread = mysqli_fetch_array($queryusers);
+        $resultatthread = mysqli_fetch_all($queryusers);
         var_dump($resultatthread);
         
         $threadcounter = count($resultatthread);
         echo $threadcounter;
+
+        $threadid= "SELECT id FROM thread";
+        $queryidthread = mysqli_query($connexion,$threadid);
+        $resultatidthread = mysqli_fetch_all($queryidthread);
+        $topicid= "SELECT id FROM topic";
+        $queryidtopic = mysqli_query($connexion,$topicid);
+        $resultatidtopic = mysqli_fetch_all($queryidtopic);
+
     }
     
 
@@ -37,10 +45,6 @@
             <!-- PARTIE TOP FORUM --> 
             <!-- PARTIE TOP FORUM --> 
             <section id="welcomesection">
-                <h1 id="welcomeh1">B i e n v e n u e</h1>
-                <article id="welcomeyuno">
-                    <img id="welcomeyuno2" src="Images/yuno gasai.png">
-                </article>
             </section>
                 </section>
             </section>
@@ -54,23 +58,50 @@
             <!-- PARTIE DISCUSSION --> 
             <section id="discussionsmainsection">
                 <section>
-                    <h1 id="discussionsh1">&nbsp;&nbsp;Discussions</h1>
+                    <h1 id="discussionsh1">&nbsp;&nbsp;Discussions A CHANGER PAR RAPPORT AU NOM DU TOPIC EN QUESTION</h1>
                 </section>
-               
-                <section id="infosmainsection">
-                    <section id="informationsectionflex">
-                        <h1 id="infosh1">&nbsp;&nbsp;Informations</h1>
-                        <article id="infosarticle">
-                            Il y a [CHIFFRES] personnes inscrites.<br>
-                            Il y a [CHIFFRES] messages envoyés.
+                <?php 
+
+                $i = 0;
+
+                while($i != $threadcounter)
+                {
+                $resultatmeta = utf8_encode($resultatthread[$i][1]);
+                $resultatmeta2 = utf8_encode($resultatthread[$i][2]);
+                
+                ?>
+                <section id="endessousdutitreflex">
+                        <section id="topicicon">
+                            <img src="Images/nonewmessage.png">
+                        </section>
+                        <section id="topicflex1">
+                        <section id="topicflex2">
+                            <article class="toastpoussage"><a href="thread.php?id=<?php echo "".$resultatidthread[$i][0]."";?>"><?php echo $resultatmeta;?></a>
+                            </article>
+                    </section>
+                    <section id="topicflex3">
+                        <article>
+                            <?php echo "".$resultatmeta2."" ?>
                         </article>
                     </section>
-                    <article>
-                        <a href=""><img id="creertopicbouton" src="Images/boutoncreertopic.png"></a>
-                        <img id="imageenbas" src="Images/animeicon.png">
+                    </section>
+                    <section class="toastpoussage2">
+                        <article class="toastpoussage3">
+                            1 message
+                        </article>
+                    </section>
+                    <section class="toastpoussage4";>
+                        <article class="toastpoussage5">
+                            Dernier message envoyé par Paul le 29/01/2020 à 11h34.
+                        </article>
+                    </section>
+                    </section>
+                    <?php
+$i++; 
+} ?>
                     </article>
                 </section>
-                
+                <a href="creerthread.php?id=<?php echo "".$_GET['id']."";?>"><img id="creertopicbouton" src="Images/boutoncreerthread.png"></a>
             </section>
         </main>
         </body>
