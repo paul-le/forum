@@ -2,15 +2,24 @@
 
     session_start();
 
-    $serverName = "localhost";
-    $userName = "root";
-    $passwordServer = "";
-    $nameTable = "forum";
+  	if (isset($_GET['id'])) 
+	{
 
-    $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
-    $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE login = '".$_SESSION['login']."'";
-    $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
-	$resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
+	    $serverName = "localhost";
+		$userName = "root";
+		$passwordServer = "";
+		$nameTable = "forum";
+	    $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
+		$requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_GET['id']."'";
+		$queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
+		$resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
+	}
+
+
+	  
+    
+
+    
 
 ?>
 
