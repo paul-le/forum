@@ -25,7 +25,7 @@
 		if ($count > 0 && password_verify($_POST['password'],$resultatHash['password'])) 
 		{
 			$_SESSION['login'] = $login ;
-			$_SESSION['id'] = $requeteID[0] ;
+			$_SESSION['id'] = $requeteID[0][0] ;
 			/*header('Location : index.php')*/ ;
 		}
 		else
