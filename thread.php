@@ -2,21 +2,25 @@
 
     session_start();
     $connexion = mysqli_connect("localhost", "root","","forum");
-    $requetemessage="SELECT * FROM message WHERE id_topic = '".$_GET['id']."'";
+    $requetemessage="SELECT * FROM message WHERE id_thread = '".$_GET['id']."'";
     $querymessage = mysqli_query($connexion,$requetemessage);
-    $resultatmessage = mysqli_fetch_array($querymessage);
+    $resultatmessage = mysqli_fetch_all($querymessage);
+    var_dump($resultatmessage);
     /*FAIRE UNE REQUETE POUR RECUPERER INFOS PROFIL*/
-    $requeteiduser="SELECT id from utilisateurs WHERE id= '".$_SESSION['id']."'";
-    $queryiduser = mysqli_query($connexion,$requeteiduser);
-    $resultatiduser = mysqli_fetch_array($queryiduser);
-    $messageenvoye= $_POST['messagethread'];
-    $datenow = date("Y-m-d H:i:s");
-
-    var_dump($resultatiduser);
+    // $requeteiduser="SELECT id from utilisateurs WHERE id = '".$_SESSION['id']."'";
+    // $queryiduser = mysqli_query($connexion,$requeteiduser);
+    // $resultatiduser = mysqli_fetch_all($queryiduser);
+    
+    echo "".$_SESSION['id']."";
+    $date = date("Y-m-d H:i:s");
 
     if(isset($_POST['envoyermessage']))
-    {
-        $requeteinsertmessagethread="INSERT INTO message (id_thread,id_utilisateur,message,date) VALUES (''".$_GET['id']."','".$resultatiduser[0][0]."' , '".$messageenvoye."','".$datenow."')";
+    {   
+        $messageenvoye= $_POST['messagethread'];
+        $idthread="".$_GET['id']."";
+        $requeteinsertmessagethread ="INSERT INTO message (id_thread,id_utilisateur,message,date) VALUES (''".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
+        echo $requeteinsertmessagethread;
+        $queryinsertmessagethread = mysqli_query($connexion,$requeteinsertmessagethread);
     }
 
     /* RECUPERER L'ID */
@@ -58,10 +62,12 @@
             <!-- PARTIE ENVOIE DU MESSAGE -->
             <section id="threadenvoiemessage">
                 <h2>Envoyer un message</h2>
-                    <form id="formenvoiemessage">
+                    <form id="formenvoiemessage" method="post" action="">
                         <textarea id="textareaenvoiemessage" name="messagethread" rows="5" cols="33" placeholder="Votre message"></textarea><br>
                         <input id="envoiemessagebouton" type="submit" name="envoyermessage" value="Envoyer">
                     </form>
             </section>
         </main>
     </body>
+
+    

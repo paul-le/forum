@@ -3,13 +3,14 @@
     if (isset($_GET['id'])) 
     {
         $connexion = mysqli_connect("localhost","root","","forum");
-        $requetethread2 = "SELECT * FROM thread WHERE id_topic = '".$_GET['id']."'";
+        $requetethread2 = "SELECT * FROM thread WHERE id_topic = ".$_GET['id']."";
+        echo $requetethread2;
         $querythread2 = mysqli_query($connexion, $requetethread2);
-        $resultatthread2 = mysqli_fetch_array($querythread2);
+        $resultatthread2 = mysqli_fetch_all($querythread2);
         $requete = "SELECT th.id_topic , th.nom , th.description , too.id , too.nom FROM thread AS th INNER JOIN topic AS too ON th.id_topic = too.id  WHERE id_topic = '".$_GET['id']."'";
         $queryusers = mysqli_query($connexion, $requete);
         $resultatthread = mysqli_fetch_all($queryusers);
-        var_dump($resultatthread);
+        var_dump($resultatthread2);
         
         $threadcounter = count($resultatthread);
         echo $threadcounter;
@@ -76,7 +77,7 @@
                         </section>
                         <section id="topicflex1">
                         <section id="topicflex2">
-                            <article class="toastpoussage"><a href="thread.php?id=<?php echo "".$resultatidthread[$i][0]."";?>"><?php echo $resultatmeta;?></a>
+                            <article class="toastpoussage"><a href="thread.php?id=<?php echo "".$resultatthread2[$i][0]."";?>"><?php echo $resultatmeta;?></a>
                             </article>
                     </section>
                     <section id="topicflex3">

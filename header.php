@@ -20,12 +20,12 @@
 
 		$requeteID = "SELECT id FROM utilisateurs WHERE login =\"$login\" ";
 		$queryID = mysqli_query($connexion, $requeteID) ;
-		$resultatID = mysqli_fetch_array($queryID) ;
+		$resultatID = mysqli_fetch_all($queryID) ;
 
 		if ($count > 0 && password_verify($_POST['password'],$resultatHash['password'])) 
 		{
 			$_SESSION['login'] = $login ;
-			$_SESSION['id'] = $requeteID[0][0] ;
+			$_SESSION['id'] = $resultatID[0][0] ;
 			/*header('Location : index.php')*/ ;
 		}
 		else
