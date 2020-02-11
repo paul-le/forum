@@ -2,7 +2,7 @@
 
     session_start();
     $connexion = mysqli_connect("localhost", "root","","forum");
-    $requetemessage="SELECT * FROM message WHERE id_thread = '".$_GET['id']."'";
+    $requetemessage="SELECT * FROM messagesthreads WHERE id_thread = '".$_GET['id']."'";
     $querymessage = mysqli_query($connexion,$requetemessage);
     $resultatmessage = mysqli_fetch_all($querymessage);
     var_dump($resultatmessage);
@@ -10,20 +10,17 @@
     // $requeteiduser="SELECT id from utilisateurs WHERE id = '".$_SESSION['id']."'";
     // $queryiduser = mysqli_query($connexion,$requeteiduser);
     // $resultatiduser = mysqli_fetch_all($queryiduser);
-    
-    echo "".$_SESSION['id']."";
-    $date = date("Y-m-d H:i:s");
 
     if(isset($_POST['envoyermessage']))
     {   
         $messageenvoye= $_POST['messagethread'];
         $idthread="".$_GET['id']."";
-        $requeteinsertmessagethread ="INSERT INTO message (id_thread,id_utilisateur,message,date) VALUES (''".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
-        echo $requeteinsertmessagethread;
-        $queryinsertmessagethread = mysqli_query($connexion,$requeteinsertmessagethread);
+        $date = date("Y-m-d H:i:s");
+        $requeteInsertMessageThread ="INSERT INTO messagesthreads (id_thread,id_utilisateur,messages,date) VALUES (''".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
+        echo $requeteInsertMessageThread;
+        $queryinsertmessagethread = mysqli_query($connexion,$requeteInsertMessageThread);
     }
 
-    /* RECUPERER L'ID */
 ?>
 
 <!DOCTYPE html>
