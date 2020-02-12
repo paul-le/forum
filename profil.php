@@ -1,19 +1,19 @@
 <?php 
 
-    session_start();
-
-  	if (isset($_GET['id'])) 
-	{
-
-	    $serverName = "localhost";
-		$userName = "root";
-		$passwordServer = "";
-		$nameTable = "forum";
-	    $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
-		$requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_GET['id']."'";
-		$queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
-		$resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
-	}
+    if (isset($_GET['id'])) 
+    {
+        session_start();
+        $serverName = "localhost";
+        $userName = "root";
+        $passwordServer = "";
+        $nameTable = "forum";
+        $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
+        $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_GET['id']."'";
+        $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
+        $resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
+    
+    }
+    
 
 
 	  
@@ -42,12 +42,11 @@
                     		if (!empty($resultatInfosProfil['avatar'])) 
                     		{ ?>
 
-                    		<img src="avatar/<?php echo $resultatInfosProfil['avatar'] ?>" width="100" >
+                    		<img src="avatar/<?php echo $resultatInfosProfil['avatar'] ?>" width="100" ><br><br>
                     	<?php
                     		}
                     	?>
-                    	<br>
-                    	<br> 
+                    
                     	<label> Pseudo </label><br>
 	                    <input type="text" name="login" placeholder="<?php echo $resultatInfosProfil['login']; ?>"><br>
 
@@ -64,7 +63,7 @@
                     </form>
                     
                 </section>
-                <section>
+            <section>
                     badge de profil
                 </section>
                 <section>
