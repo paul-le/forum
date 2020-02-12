@@ -1,26 +1,32 @@
 <?php
 
+    
     session_start();
     $connexion = mysqli_connect("localhost", "root","","forum");
     $requetemessage="SELECT * FROM messagesthreads WHERE id_thread = '".$_GET['id']."'";
     $querymessage = mysqli_query($connexion,$requetemessage);
     $resultatmessage = mysqli_fetch_all($querymessage);
-    var_dump($resultatmessage);
-    /*FAIRE UNE REQUETE POUR RECUPERER INFOS PROFIL*/
-    // $requeteiduser="SELECT id from utilisateurs WHERE id = '".$_SESSION['id']."'";
-    // $queryiduser = mysqli_query($connexion,$requeteiduser);
-    // $resultatiduser = mysqli_fetch_all($queryiduser);
+    //var_dump($resultatmessage);
+    //FAIRE UNE REQUETE POUR RECUPERER INFOS PROFIL
+    $requeteUser="SELECT * from utilisateurs WHERE id = '".$_SESSION['id']."'";
+    $queryUser = mysqli_query($connexion,$requeteUser);
+    $resultatUser = mysqli_fetch_assoc($queryUser);
+    var_dump($resultatUser) ;
+    
+    $countMessage = count($resultatmessage) ; 
+    echo "".$_SESSION['id']."";
+    $date = date("Y-m-d H:i:s");
 
     if(isset($_POST['envoyermessage']))
     {   
         $messageenvoye= $_POST['messagethread'];
         $idthread="".$_GET['id']."";
-        $date = date("Y-m-d H:i:s");
-        $requeteInsertMessageThread ="INSERT INTO messagesthreads (id_thread,id_utilisateur,messages,date) VALUES ('".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
-        echo $requeteInsertMessageThread;
-        $queryinsertmessagethread = mysqli_query($connexion,$requeteInsertMessageThread);
+        $requeteinsertmessagethread ="INSERT INTO messagesthreads (id_thread,id_utilisateur,messages,date) VALUES ('".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
+        echo $requeteinsertmessagethread;
+        $queryinsertmessagethread = mysqli_query($connexion,$requeteinsertmessagethread);
     }
 
+    /* RECUPERER L'ID */
 ?>
 
 <!DOCTYPE html>
@@ -37,23 +43,42 @@
                 <section>
                     <h1 id="discussionsh1">&nbsp;&nbsp;Titre du thread</h1>
                 </section>
-            <section id="threadmainsection">
-                <section id="threadsectionflex">
-                    <section id="threadcoteprofil">
-                        <article>
-                            <h2>Pseudo</h2>
-                            Photo du profil<br>
-                            Infos du profil
-                        </article>
+
+                <?php 
+                    $message = 0;
+
+                    while($message != $countMessage)
+                    { ?>
+                        <section id="threadmainsection">
+                            <section id="threadsectionflex">
+                                <section id="threadcoteprofil">
+                                    <article>
+                                        <h2><?php echo $resultatUser['login']; ?></h2>
+                                        <?php
+                                            if (!empty($resultatUser['avatar'])) 
+                                        { ?>
+
+                                            <img src="avatar/<?php echo $resultatUser['avatar'] ?>" width="100" ><br><br>
+                                        <?php
+                                            }
+                                        ?><br>
+                                        Infos du profil
+                                    </article>
+                                </section>
+                            <section id="threadcotemessage">
+                                <article>
+                                    
+                                    <?php 
+                                        echo $resultatmessage[$message][3] ;
+                                        $message++ ;
+                                    ?>
+                                </article>
+                            </section>
+                        </section>
                     </section>
-                    <section id="threadcotemessage">
-                        <article>
-                            titre thread<br>
-                            message
-                        </article>
-                    </section>
-                </section>
-            </section>
+                    <?php } ?>
+                            
+            
             <!-- PARTIE ENVOIE DU MESSAGE -->
             <!-- PARTIE ENVOIE DU MESSAGE -->
             <!-- PARTIE ENVOIE DU MESSAGE -->

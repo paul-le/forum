@@ -69,7 +69,7 @@
                         </article>
                     </section>
                 </section>
-            </section>
+            </section>  
             <!-- PARTIE DISCUSSION -->
             <!-- PARTIE DISCUSSION --> 
             <!-- PARTIE DISCUSSION --> 

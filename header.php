@@ -58,7 +58,7 @@
                 </form>
                     <?php }
                             } else { ?>
-                        <span id="profiltext"><a href="profil.php"> Profil </a></span>
+                        <span id="profiltext"><a href="profil.php?id=<?php echo "".$_SESSION['id'].""; ?>"> Profil </a></span>
                         <a id="boutondeco" href="logout.php"><img id="imglogout" src="images/deconnexion.png"></a>
                     <?php } ?>
                     </section>
@@ -69,7 +69,7 @@
             <ul id="navul">
                 <a href="index.php" class="lia"><li class="liheader" >Accueil</li></a>
                 <a href="index.php"><img id="homebutton" img src="Images/home.png"></a>
-                <a class="lia" href="profil.php"><li class="liheader">Profil</li></a>
+                <a class="lia" href="profil.php?id=<?php echo "".$_SESSION['id'].""; ?>"><li class="liheader">Profil</li></a>
             </ul>
             <?php } else { ?>
             <ul id="navul">
