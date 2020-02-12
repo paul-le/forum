@@ -16,7 +16,7 @@
         $messageenvoye= $_POST['messagethread'];
         $idthread="".$_GET['id']."";
         $date = date("Y-m-d H:i:s");
-        $requeteInsertMessageThread ="INSERT INTO messagesthreads (id_thread,id_utilisateur,messages,date) VALUES (''".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
+        $requeteInsertMessageThread ="INSERT INTO messagesthreads (id_thread,id_utilisateur,messages,date) VALUES ('".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
         echo $requeteInsertMessageThread;
         $queryinsertmessagethread = mysqli_query($connexion,$requeteInsertMessageThread);
     }

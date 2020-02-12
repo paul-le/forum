@@ -67,6 +67,12 @@ header{
     margin-left: 15%;
     border: 2px solid black;
     background-color: rgba(255, 255, 255, 0.925);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header a{
+    text-decoration: none;
+    color: black;
 }
 
 header img{
@@ -132,6 +138,13 @@ nav{
     height: 28px;
     transition: all 0.5s ease-out;
 }
+
+#profiltext{
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
@@ -347,6 +360,13 @@ main{
 .toastpoussage a{
     text-decoration: none;
     color:rgb(20, 135, 211);
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.toastpoussage a:hover{
+    text-decoration: none;
+    color:rgb(79, 185, 255);
     font-weight: bold;
     font-size: 15px;
 }

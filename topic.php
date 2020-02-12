@@ -1,5 +1,7 @@
 <?php 
 
+    session_start();
+
     if (isset($_GET['id'])) 
     {
         $connexion = mysqli_connect("localhost","root","","forum");
