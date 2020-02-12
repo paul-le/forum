@@ -569,14 +569,13 @@ main{
 }
 
 #partiedroiteprofil{
-    width: 70%;
-    display: flex;
+   
 }
 
 #partiegaucheprofilflex{
-    display: flex;
-    justify-content: center;
+    
 }
+
 
 /*////////////PARTIE THREAD/////////////////*/
 /*////////////PARTIE THREAD/////////////////*/
