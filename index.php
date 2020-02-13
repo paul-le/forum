@@ -9,6 +9,15 @@
     $topicid= "SELECT id FROM topic";
     $queryidtopic = mysqli_query($connexion,$topicid);
     $resultatidtopic = mysqli_fetch_all($queryidtopic);
+    $requetePersonnesInscrites = "SELECT login FROM utilisateurs";
+    $queryPersonnesInscrites = mysqli_query($connexion,$requetePersonnesInscrites);
+    $resultatPersonnesInscrites = mysqli_fetch_all($queryPersonnesInscrites);
+    $PersonnesCounter = count($resultatPersonnesInscrites);
+    $requeteNombreMessages = "SELECT messages FROM messagesthreads";
+    $queryNombreMessages = mysqli_query($connexion,$requeteNombreMessages);
+    $resultatNombreMessages = mysqli_fetch_all($queryNombreMessages);
+    $NombreMessagesCounter = count($resultatNombreMessages);
+
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +69,7 @@
                         </article>
                     </section>
                 </section>
-            </section>
+            </section>  
             <!-- PARTIE DISCUSSION -->
             <!-- PARTIE DISCUSSION --> 
             <!-- PARTIE DISCUSSION --> 
@@ -114,8 +123,8 @@ $i++;
                     <section id="informationsectionflex">
                         <h1 id="infosh1">&nbsp;&nbsp;Informations</h1>
                         <article id="infosarticle">
-                            Il y a [CHIFFRES] personnes inscrites.<br>
-                            Il y a [CHIFFRES] messages envoyés.
+                            Il y a [<?php echo $PersonnesCounter ?>] personnes inscrites.<br>
+                            Il y a [<?php echo $NombreMessagesCounter ?>] messages envoyés.
                         </article>
                     </section>
                     <article>

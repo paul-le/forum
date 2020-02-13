@@ -1,26 +1,16 @@
 <?php 
 
-    if (isset($_GET['id'])) 
-    {
-        session_start();
-        $serverName = "localhost";
-        $userName = "root";
-        $passwordServer = "";
-        $nameTable = "forum";
-        $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
-        $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_GET['id']."'";
-        $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
-        $resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
-    
-    }
-    
+    session_start();
 
-
-	  
+    $serverName = "localhost";
+    $userName = "root";
+    $passwordServer = "";
+    $nameTable = "forum";
+    $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
+    $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_SESSION['id']."'";
+    $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
+    $resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
     
-
-    
-
 ?>
 
 <!DOCTYPE html>
@@ -35,18 +25,20 @@
         <main>
             <section id="partiegaucheprofil">
                 <section id="partiegaucheprofilflex">
-                    <h1>Infos Profil</h1>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <h1 id="infosprofils">Infos Profil</h1>
+                    <form id="profilform" action="" method="post" enctype="multipart/form-data">
 
                     	<?php
                     		if (!empty($resultatInfosProfil['avatar'])) 
                     		{ ?>
 
-                    		<img src="avatar/<?php echo $resultatInfosProfil['avatar'] ?>" width="100" ><br><br>
+                    		<img src="avatar/<?php echo $resultatInfosProfil['avatar'] ?>" width="200" ><br><br>
                     	<?php
                     		}
                     	?>
-                    
+
+                        <?php if($_GET['id'] == $_SESSION['id']){ ?>
+
                     	<label> Pseudo </label><br>
 	                    <input type="text" name="login" placeholder="<?php echo $resultatInfosProfil['login']; ?>"><br>
 
@@ -57,23 +49,24 @@
 	                    <input type="password" name="passwordcon"><br>
 
 	                    <label>Avatar </label><br>
-	                    <input type="file" name="avatar">
-	                            
+	                    <input type="file" name="avatar"><br>
+	                    <?php } else {
+                            echo $resultatInfosProfil['login'];
+                        } ?>
 	                    <input type="submit" value="Modifier" name="modifier" /><br>
+                    </form>  
+                </section>
+                <section>
+                    <?php if($_SESSION['login'] == 'admin'){ ?>
+                    <form id="profilform2">
+                    <input type="radio" name="memberrole" value="Admin"checked>
+                    <label for="huey">Admin</label>
+                    <input type="radio" name="memberrole" value="Modo">
+                    <label for="huey">Modo</label>
+                    <input type="radio" name="memberrole" value="Membre">
+                    <label for="huey">Membre</label>
                     </form>
-                    
-                </section>
-            <section>
-                    badge de profil
-                </section>
-                <section>
-                    photodeprofil
-                </section>
-                <section>
-                    description du profil
-                </section>
-                <section>
-                    role checkbox
+                    <?php } ?>
                 </section>
             </section>
             <section id="partiedroiteprofil">
@@ -140,9 +133,7 @@
 									if ($deplacement) 
 									{
 										$updateAvatar = "UPDATE utilisateurs SET avatar = '".$resultatInfosProfil['login'].".".$extensionsUpload."' WHERE id = ".$resultatInfosProfil['id']."";
-
-										echo $updateAvatar;
-
+                                        $queryAvatar = mysqli_query($connexion,$updateAvatar);
 									}
 									else
 									{

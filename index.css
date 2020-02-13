@@ -67,6 +67,12 @@ header{
     margin-left: 15%;
     border: 2px solid black;
     background-color: rgba(255, 255, 255, 0.925);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header a{
+    text-decoration: none;
+    color: black;
 }
 
 header img{
@@ -132,6 +138,13 @@ nav{
     height: 28px;
     transition: all 0.5s ease-out;
 }
+
+#profiltext{
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
 /*///////////////////////////////////CSS FORUM TOPIC ETC*/
@@ -351,6 +364,13 @@ main{
     font-size: 15px;
 }
 
+.toastpoussage a:hover{
+    text-decoration: none;
+    color:rgb(79, 185, 255);
+    font-weight: bold;
+    font-size: 15px;
+}
+
 .toastpoussage2{
     margin-bottom: 2px;
     margin-top: 2px;
@@ -562,20 +582,48 @@ main{
 #partiegaucheprofil{
     width: 30%;
     background-color: grey;
-    height: 600px;
+    height: 700px;
     padding-top: 3%;
     display: flex;
     flex-direction: column;
 }
 
 #partiedroiteprofil{
-   
+    width: 70%;
+    display: flex;
+    flex-direction: column;
 }
 
 #partiegaucheprofilflex{
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
+#profilform{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20%;
+    text-align: center;*
+}
+
+#profilform2{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20%;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#infosprofils{
+    margin-right: 10%;
+}
 
 /*////////////PARTIE THREAD/////////////////*/
 /*////////////PARTIE THREAD/////////////////*/

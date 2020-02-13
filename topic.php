@@ -88,7 +88,20 @@
                     </section>
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
-                            1 message
+                            <?php
+                                $connexion = mysqli_connect("localhost","root","","forum");
+                                $allMessages = "SELECT messages FROM messagesthreads WHERE id_thread = ".$resultatthread2[$i][0]."";
+                                
+                                $queryMessages = mysqli_query($connexion,$allMessages) ;
+                                $resultAllMessages = mysqli_fetch_all($queryMessages) ;
+
+                                $countMessages = count($resultAllMessages) ;
+                                echo $countMessages." Messages";
+
+
+
+
+                            ?>
                         </article>
                     </section>
                     <section class="toastpoussage4";>
@@ -98,8 +111,9 @@
                     </section>
                     </section>
                     <?php
-$i++; 
-} ?>
+                        $i++; 
+                        } 
+                    ?>
                     </article>
                 </section>
                 <a href="creerthread.php?id=<?php echo "".$_GET['id']."";?>"><img id="creertopicbouton" src="Images/boutoncreerthread.png"></a>

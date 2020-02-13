@@ -19,8 +19,10 @@
 <html>
 <head>
 	<title>Membre</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
+	<?php include('header.php'); ?>
 	<main>
 		<table>
     		<tr>

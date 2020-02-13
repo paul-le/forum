@@ -24,6 +24,7 @@
         $requeteinsertmessagethread ="INSERT INTO messagesthreads (id_thread,id_utilisateur,messages,date) VALUES ('".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
         echo $requeteinsertmessagethread;
         $queryinsertmessagethread = mysqli_query($connexion,$requeteinsertmessagethread);
+        header('Location:thread.php?id='.$_GET['id'].'');
     }
 
     /* RECUPERER L'ID */

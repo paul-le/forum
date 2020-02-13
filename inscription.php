@@ -32,7 +32,7 @@
 			$requeteInsertUser = "INSERT INTO utilisateurs (login, password, age, avatar) VALUES('$nameLogin', '$passwordHash', '$ageUser', 'VIDE')" ;
 			$queryInsertUser = mysqli_query($connexion, $requeteInsertUser) ;
             echo $requeteInsertUser;
-            #header("Location:index.php");
+            header("Location:index.php");
 		}
 		else
 		{
