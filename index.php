@@ -60,7 +60,13 @@
                     </section>
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
-                            1 message<br>1 sujet
+                            1 message<br>
+                            <?php
+
+                            ?>
+
+                            1 sujet
+                            
                         </article>
                     </section>
                     <section class="toastpoussage4";>
@@ -84,8 +90,8 @@
                 </section>
                 <?php 
 
+                    
                     $i = 0;
-
                     while($i != $topicscounter)
                     {
                         $resultatmeta = utf8_encode($resultat[$i][0]);
@@ -107,7 +113,29 @@
                     </section>
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
-                            1 message<br>1 sujet
+                            1 message
+                            <?php
+
+
+                                
+
+                            ?>
+
+                           <br />
+                            <?php 
+
+                                
+                                $connexion = mysqli_connect("localhost","root","","forum");
+                                $allThread = "SELECT nom FROM thread WHERE id_topic = ".$resultatidtopic[$i][0]."";
+                                
+                                $queryThread = mysqli_query($connexion,$allThread) ;
+                                $resultallThread = mysqli_fetch_all($queryThread) ;
+
+                                $countThread = count($resultallThread) ;
+                                echo $countThread." Sujet";
+
+
+                            ?>
                         </article>
                     </section>
                     <section class="toastpoussage4";>

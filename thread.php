@@ -6,12 +6,12 @@
     $requetemessage="SELECT * FROM messagesthreads WHERE id_thread = '".$_GET['id']."'";
     $querymessage = mysqli_query($connexion,$requetemessage);
     $resultatmessage = mysqli_fetch_all($querymessage);
-    //var_dump($resultatmessage);
+   
     //FAIRE UNE REQUETE POUR RECUPERER INFOS PROFIL
     $requeteUser="SELECT * from utilisateurs WHERE id = '".$_SESSION['id']."'";
     $queryUser = mysqli_query($connexion,$requeteUser);
     $resultatUser = mysqli_fetch_assoc($queryUser);
-    var_dump($resultatUser) ;
+  
     
     $countMessage = count($resultatmessage) ; 
     echo "".$_SESSION['id']."";
@@ -71,8 +71,21 @@
                                     
                                     <?php 
                                         echo $resultatmessage[$message][3] ;
-                                        $message++ ;
+
                                     ?>
+                                    <br />
+                                    <div id="vote">
+                                        <a href="vote.php?t=1&id=<?php echo "".$resultatmessage[$message][0].""; ?>">Like</a>
+                                        <br />
+                                        <a href="vote.php?t=2&id=<?php echo "".$resultatmessage[$message][0].""; ?>">Dislike</a>
+                                    </div>
+                                    <dir id="delete">
+                                            <a href="delete.php?id=<?php echo "".$resultatmessage[$message][0].""; ?>">Supprimer></a>                                       
+                                    </dir>
+                                   
+                                    <?php
+                                        $message++ ;
+                                    ?>        
                                 </article>
                             </section>
                         </section>
