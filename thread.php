@@ -72,16 +72,41 @@
                                     <?php 
                                         echo $resultatmessage[$message][3] ;
 
+                                        
+                                        $likes = "SELECT valeur FROM vote WHERE id_message = ".$resultatmessage[$message][0]." AND valeur = 1";
+
+                                        $queryLikes = mysqli_query($connexion,$likes) ;
+                                        $resultLikes = mysqli_fetch_all($queryLikes) ;
+                                        $countLikes = count($resultLikes) ;
+
+
+
+                                        $disLikes = "SELECT valeur FROM vote WHERE id_message = ".$resultatmessage[$message][0]." AND valeur = 2";
+
+                                        $queryDislikes = mysqli_query($connexion,$disLikes) ;
+                                        $resultDislikes = mysqli_fetch_all($queryDislikes) ;
+                                        
+                                       
+
+                                        $countDislikes = count($resultDislikes) ;
+
+
+                                        
+
+
+
                                     ?>
                                     <br />
                                     <div id="vote">
-                                        <a href="vote.php?t=1&id=<?php echo "".$resultatmessage[$message][0].""; ?>">Like</a>
+                                        <a href="vote.php?t=1&id=<?php echo "".$resultatmessage[$message][0].""; ?>">Like</a><?php echo $countLikes ;?>
                                         <br />
-                                        <a href="vote.php?t=2&id=<?php echo "".$resultatmessage[$message][0].""; ?>">Dislike</a>
+                                        <a href="vote.php?t=2&id=<?php echo "".$resultatmessage[$message][0].""; ?>">Dislike</a><?php echo $countDislikes ;?>
                                     </div>
+                                    <?php if ($_SESSION['login'] == "admin" || $_SESSION['login'] == "modo") { ?>
                                     <dir id="delete">
                                             <a href="delete.php?id=<?php echo "".$resultatmessage[$message][0].""; ?>">Supprimer></a>                                       
-                                    </dir>
+                                    </div>
+                                    <?php } ?>
                                    
                                     <?php
                                         $message++ ;

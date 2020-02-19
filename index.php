@@ -5,17 +5,23 @@
     $requetetopic = "SELECT nom,description FROM topic";
     $query = mysqli_query($connexion,$requetetopic);
     $resultat = mysqli_fetch_all($query);
+
     $topicscounter = count($resultat);
+
     $topicid= "SELECT id FROM topic";
     $queryidtopic = mysqli_query($connexion,$topicid);
     $resultatidtopic = mysqli_fetch_all($queryidtopic);
+
     $requetePersonnesInscrites = "SELECT login FROM utilisateurs";
     $queryPersonnesInscrites = mysqli_query($connexion,$requetePersonnesInscrites);
     $resultatPersonnesInscrites = mysqli_fetch_all($queryPersonnesInscrites);
+
     $PersonnesCounter = count($resultatPersonnesInscrites);
+
     $requeteNombreMessages = "SELECT messages FROM messagesthreads";
     $queryNombreMessages = mysqli_query($connexion,$requeteNombreMessages);
     $resultatNombreMessages = mysqli_fetch_all($queryNombreMessages);
+
     $NombreMessagesCounter = count($resultatNombreMessages);
 
 ?>
@@ -61,10 +67,6 @@
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
                             1 message<br>
-                            <?php
-
-                            ?>
-
                             1 sujet
                             
                         </article>
@@ -113,7 +115,7 @@
                     </section>
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
-                            1 message
+                            /////
                             <?php
 
 
@@ -141,12 +143,16 @@
                     <section class="toastpoussage4";>
                         <article class="toastpoussage5">
                             Dernier message envoyé par Paul le 29/01/2020 à 11h34.
+                            <?php
+                                                            
+
+                            ?>
                         </article>
                     </section>
                     </section>
-<?php
-$i++;
-} ?>
+                    <?php
+                    $i++;
+                } ?>
                 <section id="infosmainsection">
                     <section id="informationsectionflex">
                         <h1 id="infosh1">&nbsp;&nbsp;Informations</h1>

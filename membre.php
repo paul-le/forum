@@ -24,6 +24,9 @@
 <body>
 	<?php include('header.php'); ?>
 	<main>
+		<?php 
+		if (isset($_SESSION['login'])) 
+			{ ?>
 		<table>
     		<tr>
         		<th>ID</th>
@@ -38,7 +41,14 @@
 				<td><a href="profil.php?id=<?php echo "".$membre['id']."";?>"><?php echo $membre['login']; ?></td></a> 
 				<td><?php echo $membre['age']; ?></td>
 			</tr>
-		<?php } ?>
+		<?php 
+				}
+			}
+			else
+			{
+				echo "Vous n'etes pas connectez";
+			}
+		 ?>
 	</main>
 
 </body>
