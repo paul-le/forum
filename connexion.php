@@ -12,7 +12,7 @@
 		$requeteCountUser = "SELECT count(*) as toast FROM utilisateurs WHERE login = \"$login\" ";
 		$queryCountUser = mysqli_query($connexion, $requeteCountUser) ;
 		$resultatCountUser = mysqli_fetch_array($queryCountUser) ;
-
+ 
 		$requeteHash = "SELECT password FROM utilisateurs WHERE login = \"$login\"";
 		$queryHash = mysqli_query($connexion, $requeteHash) ;
 		$resultatHash = mysqli_fetch_array($queryHash) ;

@@ -16,7 +16,7 @@
 		$queryHash = mysqli_query($connexion, $requeteHash) ;
 		$resultatHash = mysqli_fetch_array($queryHash) ;
 
-		$count = $resultatCountUser ;
+		$count = $resultatCountUser ; 
 
 		$requeteID = "SELECT id FROM utilisateurs WHERE login =\"$login\" ";
 		$queryID = mysqli_query($connexion, $requeteID) ;

@@ -2,7 +2,7 @@
 
     
     session_start();
-    $connexion = mysqli_connect("localhost", "root","","forum");
+    $connexion = mysqli_connect("localhost", "root","","forum"); 
     $requetemessage="SELECT * FROM messagesthreads WHERE id_thread = '".$_GET['id']."'";
     $querymessage = mysqli_query($connexion,$requetemessage);
     $resultatmessage = mysqli_fetch_all($querymessage);

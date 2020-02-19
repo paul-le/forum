@@ -7,7 +7,7 @@
         $nomthread = $_POST['threadname'];
         $descthread = $_POST['threaddescription'];
         $requeteinsertthread = "INSERT INTO thread (nom,description,id_topic) VALUES('$nomthread','$descthread','".$_GET['id']."')";
-        $querythreadcreation = mysqli_query($connexion, $requeteinsertthread) ;
+        $querythreadcreation =  mysqli_query($connexion, $requeteinsertthread) ;
     }
 ?>
 

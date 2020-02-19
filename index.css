@@ -680,7 +680,7 @@ main{
 }
 
 #threadenvoiemessage{
-    height: 175px; 
+    height: 175px;  
     width: 100%;
     display: flex;
     flex-direction: column;

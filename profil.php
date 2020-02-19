@@ -5,7 +5,7 @@
     $serverName = "localhost";
     $userName = "root";
     $passwordServer = "";
-    $nameTable = "forum";
+    $nameTable = "forum"; 
     $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
 
     if (isset($_GET['id'])) 

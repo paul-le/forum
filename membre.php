@@ -16,7 +16,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 	<title>Membre</title>
 	<link rel="stylesheet" type="text/css" href="index.css">

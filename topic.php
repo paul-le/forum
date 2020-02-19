@@ -14,7 +14,7 @@
         
         $threadcounter = count($resultatthread);
         echo $threadcounter;
-
+ 
         $threadid= "SELECT id FROM thread";
         $queryidthread = mysqli_query($connexion,$threadid);
         $resultatidthread = mysqli_fetch_all($queryidthread);

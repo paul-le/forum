@@ -10,7 +10,7 @@
 		$passwordHash = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 	}
 
-	if(isset($_POST['inscription']) == true && $_POST['password'] == $_POST['confirmationpassword'] && isset($_POST['login']) && strlen($_POST['login']) != 0 && isset($_POST['password']) && strlen($_POST['password']) != 0 && isset($_POST['confirmationpassword']) && strlen($_POST['confirmationpassword']) != 0)
+	if(isset($_POST['inscription']) == true && $_POST['password'] == $_POST['confirmationpassword'] && isset($_POST['login']) && strlen($_POST['login']) != 0 && isset($_POST['password']) && strlen($_POST['password']) != 0 && isset($_POST['confirmationpassword']) && strlen($_POST['confirmationpassword']) != 0) 
 	{
 		$requeteUser = "SELECT * FROM utilisateurs";
         $queryUser = mysqli_query($connexion , $requeteUser);

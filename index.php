@@ -74,7 +74,7 @@
                     <section class="toastpoussage4";>
                         <article class="toastpoussage5">
                             Dernier message envoyé par Paul le 29/01/2020 à 11h34.
-                        </article>
+                        </article> 
                     </section>
                 </section>
             </section>  

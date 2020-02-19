@@ -8,7 +8,7 @@
         $desctopic = $_POST['topicdescription'];
         $requeteinserttopic = "INSERT INTO topic (nom,description) VALUES('$nomtopic','$desctopic')";
         $querytopiccreation = mysqli_query($connexion, $requeteinserttopic) ;
-    }
+    } 
 ?>
 
 <!DOCTYPE html>
