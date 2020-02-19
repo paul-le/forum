@@ -9,7 +9,7 @@
 
 	if (isset($_GET['id']) AND $_SESSION['login'] == "admin" ) 
 	{
-		$deleteMessage = "DELETE FROM messagesthreads WHERE messagesthreads.id = '".$_GET['id']."' ";
+		$deleteMessage = "DELETE FROM  messagesthreads WHERE messagesthreads.id = '".$_GET['id']."' ";
 		$queryMessage = mysqli_query($connexion, $deleteMessage) ;
 		echo $deleteMessage;
 		header('Location:thread.php?id=5');

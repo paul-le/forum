@@ -28,7 +28,7 @@
 			$_SESSION['id'] = $resultatID[0][0] ;
 			/*header('Location : index.php')*/ ;
 		}
-		else
+		else  
 		{
 			$connexionImpossible = true ;
 		}

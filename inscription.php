@@ -15,7 +15,7 @@
 		$requeteUser = "SELECT * FROM utilisateurs";
         $queryUser = mysqli_query($connexion , $requeteUser);
         $resultatUser = mysqli_fetch_all($queryUser);
-
+ 
 		foreach ($resultatUser as $row_number => $loginExist) 
 		{
 			if ($resultatUser[$row_number][1] == $_POST['login'])

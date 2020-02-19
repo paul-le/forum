@@ -680,7 +680,7 @@ main{
 }
 
 #threadenvoiemessage{
-    height: 175px;
+    height: 175px; 
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -708,54 +708,8 @@ main{
 
 
 
-.vote{
-    margin : 50px 0;
-    text-align: right;
-}
 
-.vote_bar{
-    width: 150px ;
-    height: 4px ;
-    background-color: red ;
-    display: inline-block;
-}
-
-.vote_progress{
-    height: 4px ;
-    width: 0% ;
-    background-color: green ;
-}
-
-.vote_buttons{
-
-    margin-top: 10px ;
-    text-align: right;
-    
-}
-
-.vote_button{
-    width: 10%;
-    display: inline-block;
-    cursor: pointer;
-    transition: color 0.3s ;
-}
-
-.vote_button img{
-   width: 30%;
-    
-}
-
-.vote_button img{
-    width: 30%;    
-}
-
-.vote_like:hover{
-    color: green ;
-}
-
-.vote_dislike:hover{
-    color: red ;
-}
+ 
 
 
 

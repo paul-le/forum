@@ -11,7 +11,7 @@
     $requeteUser="SELECT * from utilisateurs WHERE id = '".$_SESSION['id']."'";
     $queryUser = mysqli_query($connexion,$requeteUser);
     $resultatUser = mysqli_fetch_assoc($queryUser);
-  
+   
     
     $countMessage = count($resultatmessage) ; 
     echo "".$_SESSION['id']."";

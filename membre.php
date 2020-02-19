@@ -46,7 +46,7 @@
 			}
 			else
 			{
-				echo "Vous n'etes pas connectez";
+				echo "Vous n'etes pas connectez"; 
 			}
 		 ?>
 	</main>

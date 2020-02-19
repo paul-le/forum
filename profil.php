@@ -11,7 +11,7 @@
     if (isset($_GET['id'])) 
     {
         $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_GET['id']."'";
-        $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
+        $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil) ;
         $resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);   
     }
     else

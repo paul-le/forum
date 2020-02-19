@@ -11,7 +11,7 @@
     }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html>
     <head>
         <title>Forum index</title>
