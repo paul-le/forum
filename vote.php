@@ -42,6 +42,7 @@
 
         if ($getT == 1) 
         {
+           
             if ($countLikes >= 1) 
             {
                 $requeteResetLike = "DELETE FROM vote WHERE id_message = '".$resultatmessage['id']."' AND id_utilisateur='".$resultUser['id']."' AND valeur = '".$getT."'";
@@ -51,6 +52,16 @@
                 header('Location:thread.php?id='.$resultatmessage['id_thread'].'') ;
 
             }
+            elseif ($countDislikes >= 1) 
+            {
+                
+                $requeteUpdateLike = "UPDATE vote SET valeur ='".$getT."' WHERE id_message = '".$resultatmessage['id']."' AND  id_utilisateur='".$resultUser['id']."'";
+                $queryUpdateLike = mysqli_query($connexion, $requeteUpdateLike);
+                echo $requeteUpdateLike;
+                header('Location:thread.php?id='.$resultatmessage['id_thread'].'') ;
+
+            }
+
             else
             {
                 $insertLike ="INSERT INTO vote (id_message, id_utilisateur, valeur) VALUES ('".$resultatmessage['id']."','".$resultUser['id']."','".$getT."')";
@@ -63,11 +74,20 @@
 
         if ($getT == 2) 
         {
-             if ($countDislikes >= 1) 
+            if ($countDislikes >= 1) 
             {
                 $requeteResetDislike = "DELETE FROM vote WHERE id_message='".$resultatmessage['id']."' AND id_utilisateur='".$resultUser['id']."' AND valeur = '".$getT."'";
                 $queryResetDislike = mysqli_query($connexion, $requeteResetDislike);
                 echo $requeteResetDislike;
+                header('Location:thread.php?id='.$resultatmessage['id_thread'].'') ;
+
+            }
+            elseif ($countLikes >= 1) 
+            {
+                
+                $requeteUpdateDislike = "UPDATE vote SET valeur ='".$getT."' WHERE id_message = '".$resultatmessage['id']."' AND  id_utilisateur='".$resultUser['id']."'";
+                $queryUpdateDislike = mysqli_query($connexion, $requeteUpdateDislike);
+                echo $requeteUpdateDislike;
                 header('Location:thread.php?id='.$resultatmessage['id_thread'].'') ;
 
             }
