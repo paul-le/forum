@@ -124,11 +124,13 @@
             <!-- PARTIE ENVOIE DU MESSAGE -->
             <!-- PARTIE ENVOIE DU MESSAGE -->
             <section id="threadenvoiemessage">
+                <?php if(isset($_SESSION['login'])){ ?>
                 <h2>Envoyer un message</h2>
                     <form id="formenvoiemessage" method="post" action="">
                         <textarea id="textareaenvoiemessage" name="messagethread" rows="5" cols="33" placeholder="Votre message"></textarea><br>
                         <input id="envoiemessagebouton" type="submit" name="envoyermessage" value="Envoyer">
                     </form>
+                <?php } else { echo "Veuillez vous connecter pour envoyer un message !";} ?>
             </section>
         </main>
     </body>

@@ -6,13 +6,11 @@
     {
         $connexion = mysqli_connect("localhost","root","","forum");
         $requetethread2 = "SELECT * FROM thread WHERE id_topic = ".$_GET['id']."";
-        echo $requetethread2;
         $querythread2 = mysqli_query($connexion, $requetethread2);
         $resultatthread2 = mysqli_fetch_all($querythread2);
         $requete = "SELECT th.id_topic , th.nom , th.description , too.id , too.nom FROM thread AS th INNER JOIN topic AS too ON th.id_topic = too.id  WHERE id_topic = '".$_GET['id']."'";
         $queryusers = mysqli_query($connexion, $requete);
         $resultatthread = mysqli_fetch_all($queryusers);
-        var_dump($resultatthread);
         $threadcounter = count($resultatthread);
 
 
@@ -76,7 +74,7 @@
                         <section id="topicicon">
                             <img src="Images/nonewmessage.png">
                         </section>
-                        <section id="topicflex1">
+                        <section id="topicflex1fix">
                         <section id="topicflex2">
                             <article class="toastpoussage"><a href="thread.php?id=<?php echo "".$resultatthread2[$i][0]."";?>"><?php echo $resultatmeta;?></a>
                             </article>
@@ -104,11 +102,10 @@
 
                             ?>
                         </article>
-                    </section>
-                    <section class="toastpoussage4";>
+                    <!-- <section class="toastpoussage4";>
                         <article class="toastpoussage5">
                             Dernier message envoyé par Paul le 29/01/2020 à 11h34.
-                        </article>
+                        </article> -->
                     </section>
                     </section>
                     <?php
@@ -117,7 +114,9 @@
                     ?>
                     </article>
                 </section>
+                <?php if(isset($_SESSION['login'])){ ?>
                 <a href="creerthread.php?id=<?php echo "".$_GET['id']."";?>"><img id="creertopicbouton" src="Images/boutoncreerthread.png"></a>
+                <?php } ?>
             </section>
         </main>
         </body>

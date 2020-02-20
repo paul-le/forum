@@ -31,7 +31,6 @@
 
 			$requeteInsertUser = "INSERT INTO utilisateurs (login, password, age, avatar, role) VALUES('$nameLogin', '$passwordHash', '$ageUser', 'VIDE' , 'Membre')" ;
 			$queryInsertUser = mysqli_query($connexion, $requeteInsertUser) ;
-            echo $requeteInsertUser;
             header("Location:index.php");
 		}
 		else

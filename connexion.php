@@ -33,8 +33,6 @@
 			$_SESSION['id'] = $requeteID[0];
 			$_SESSION['role'] = $resultatRole[0];
 			// header('Location : index.php');
-			var_dump($resultatRole);
-			var_dump($_SESSION);
 		}
 		else
 		{

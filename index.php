@@ -21,7 +21,6 @@
     $requeteThread1 = "SELECT * FROM thread ORDER BY id_topic ASC";
     $queryThread1 = mysqli_query($connexion,$requeteThread1);
     $resultatThread1 = mysqli_fetch_all($queryThread1);
-    var_dump($resultatThread1);
 
     
 
