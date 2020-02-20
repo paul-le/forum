@@ -2,11 +2,11 @@
 
     session_start();
     $connexion = mysqli_connect("localhost", "root","","forum");
-    $requetetopic = "SELECT nom,description FROM topic";
+    $requetetopic = "SELECT nom,description FROM topic ORDER BY id DESC";
     $query = mysqli_query($connexion,$requetetopic);
     $resultat = mysqli_fetch_all($query);
     $topicscounter = count($resultat);
-    $topicid= "SELECT id FROM topic";
+    $topicid= "SELECT id FROM topic ORDER BY id DESC";
     $queryidtopic = mysqli_query($connexion,$topicid);
     $resultatidtopic = mysqli_fetch_all($queryidtopic);
     $requetePersonnesInscrites = "SELECT login FROM utilisateurs";
@@ -17,6 +17,12 @@
     $queryNombreMessages = mysqli_query($connexion,$requeteNombreMessages);
     $resultatNombreMessages = mysqli_fetch_all($queryNombreMessages);
     $NombreMessagesCounter = count($resultatNombreMessages);
+
+    $requeteThread1 = "SELECT * FROM thread ORDER BY id_topic ASC";
+    $queryThread1 = mysqli_query($connexion,$requeteThread1);
+    $resultatThread1 = mysqli_fetch_all($queryThread1);
+    var_dump($resultatThread1);
+
     
 
 ?>
@@ -61,7 +67,6 @@
                     </section>
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
-                            1 message<br>
                             <?php
 
                             ?>
@@ -72,7 +77,7 @@
                     </section>
                     <section class="toastpoussage4";>
                         <article class="toastpoussage5">
-                            Dernier message envoyé par Paul le 29/01/2020 à 11h34.
+                            Dernier thread créer "Réglement".
                         </article>
                     </section>
                 </section>
@@ -114,15 +119,6 @@
                     </section>
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
-                            1 message
-                            <?php
-
-
-                                
-
-                            ?>
-
-                           <br />
                             <?php 
 
                                 
@@ -141,7 +137,14 @@
                     </section>
                     <section class="toastpoussage4";>
                         <article class="toastpoussage5">
-                            Dernier message envoyé par Paul le 29/01/2020 à 11h34.
+                             <?php 
+                             
+                             if(isset($topicid[$i][0]) && isset($resultatThread1[$i][2]))
+                             {
+                             if($topicid[$i][0] == $resultatThread1[$i][1])
+                            {
+                                echo "Dernier thread créer".$resultatThread1[$i][2].".";
+                            } else { echo "Aucun thread"; }} ?>
                         </article>
                     </section>
                     </section>
@@ -157,7 +160,12 @@ $i++;
                         </article>
                     </section>
                     <article>
+                        <?php 
+                        if((isset($_SESSION['login']))){
+                        if($_SESSION['role'] == 'Admin' || ($_SESSION['role'] == 'Modo'))
+                        { ?>
                         <a href="creertopic.php"><img id="creertopicbouton" src="Images/boutoncreertopic.png"></a>
+                        <?php } else {}} ?>
                         <img id="imageenbas" src="Images/animeicon.png">
                     </article>
                 </section>

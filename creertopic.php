@@ -23,7 +23,7 @@
     <?php include('header.php'); ?>
         <main>
             <?php     
-                if(isset($_SESSION['login']) && $_SESSION['login'] == 'admin')
+                if(isset($_SESSION['login']) && $_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo')
                 { ?>
             <form method="post" action="">
                 <input type="text" name="topicname" placeholder="Nom du topic" required>

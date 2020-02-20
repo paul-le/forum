@@ -12,10 +12,9 @@
         $requete = "SELECT th.id_topic , th.nom , th.description , too.id , too.nom FROM thread AS th INNER JOIN topic AS too ON th.id_topic = too.id  WHERE id_topic = '".$_GET['id']."'";
         $queryusers = mysqli_query($connexion, $requete);
         $resultatthread = mysqli_fetch_all($queryusers);
-        var_dump($resultatthread2);
-        
+        var_dump($resultatthread);
         $threadcounter = count($resultatthread);
-        echo $threadcounter;
+
 
         $threadid= "SELECT id FROM thread";
         $queryidthread = mysqli_query($connexion,$threadid);
@@ -61,7 +60,7 @@
             <!-- PARTIE DISCUSSION --> 
             <section id="discussionsmainsection">
                 <section>
-                    <h1 id="discussionsh1">&nbsp;&nbsp;Discussions A CHANGER PAR RAPPORT AU NOM DU TOPIC EN QUESTION</h1>
+                    <h1 id="discussionsh1">&nbsp;&nbsp; Discussions</h1>
                 </section>
                 <?php 
 

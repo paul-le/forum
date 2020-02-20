@@ -3,10 +3,11 @@
     
     session_start();
     $connexion = mysqli_connect("localhost", "root","","forum");
-    $requetemessage="SELECT * FROM messagesthreads WHERE id_thread = '".$_GET['id']."'";
+    $requetemessage="SELECT messagesthreads.id,id_thread,id_utilisateur,messages,date,utilisateurs.id,login,avatar,role FROM messagesthreads INNER JOIN utilisateurs ON utilisateurs.id = id_utilisateur WHERE id_thread = '".$_GET['id']."'";
     $querymessage = mysqli_query($connexion,$requetemessage);
     $resultatmessage = mysqli_fetch_all($querymessage);
-   
+
+
     //FAIRE UNE REQUETE POUR RECUPERER INFOS PROFIL
     $requeteUser="SELECT * from utilisateurs WHERE id = '".$_SESSION['id']."'";
     $queryUser = mysqli_query($connexion,$requeteUser);
@@ -14,7 +15,6 @@
   
     
     $countMessage = count($resultatmessage) ; 
-    echo "".$_SESSION['id']."";
     $date = date("Y-m-d H:i:s");
 
     if(isset($_POST['envoyermessage']))
@@ -54,34 +54,61 @@
                             <section id="threadsectionflex">
                                 <section id="threadcoteprofil">
                                     <article>
-                                        <h2><?php echo $resultatUser['login']; ?></h2>
+                                        <h2><?php echo $resultatmessage[$message][6]; ?></h2>
                                         <?php
-                                            if (!empty($resultatUser['avatar'])) 
+                                            if (!empty($resultatmessage[$message][7])) 
                                         { ?>
-
-                                            <img src="avatar/<?php echo $resultatUser['avatar'] ?>" width="100" ><br><br>
                                         <?php
-                                            }
+                                            if ($resultatmessage[$message][7] != 'VIDE')
+                                            { ?>
+                                            <img src="avatar/<?php echo $resultatmessage[$message][7] ?>" width="180" ><br><br>
+                                        <?php
+                                        }}
                                         ?><br>
-                                        Infos du profil
+                                        <a href="profil.php?id=<?php echo $resultatmessage[$message][5]; ?>">Infos du profil</a>
                                     </article>
                                 </section>
                             <section id="threadcotemessage">
                                 <article>
-                                    
+                                    <section id="messagethreadsection">
                                     <?php 
                                         echo $resultatmessage[$message][3] ;
+                                    ?>
+                                    </section>
+                                    <?php
+                                        $likes = "SELECT valeur FROM vote WHERE id_message = ".$resultatmessage[$message][0]." AND valeur = 1";
+
+                                        $queryLikes = mysqli_query($connexion,$likes) ;
+                                        $resultLikes = mysqli_fetch_all($queryLikes) ;
+                                        $countLikes = count($resultLikes) ;
+
+
+
+                                        $disLikes = "SELECT valeur FROM vote WHERE id_message = ".$resultatmessage[$message][0]." AND valeur = 2";
+
+                                        $queryDislikes = mysqli_query($connexion,$disLikes) ;
+                                        $resultDislikes = mysqli_fetch_all($queryDislikes) ;
+                                        
+                                       
+
+                                        $countDislikes = count($resultDislikes) ;
 
                                     ?>
-                                    <br />
+                                    <br/>
+                                    <section id="systemlike">
+                                    <?php if(isset($_SESSION['login'])){ ?>
                                     <div id="vote">
-                                        <a href="vote.php?t=1&id=<?php echo "".$resultatmessage[$message][0].""; ?>">Like</a>
-                                        <br />
-                                        <a href="vote.php?t=2&id=<?php echo "".$resultatmessage[$message][0].""; ?>">Dislike</a>
+                                        <a href="vote.php?t=1&id=<?php echo "".$resultatmessage[$message][0].""; ?>"><img src="Images/thumbup.png"></a><?php echo $countLikes ;?>
+
+                                        <a href="vote.php?t=2&id=<?php echo "".$resultatmessage[$message][0].""; ?>"><img src="Images/thumbdown.png"></a><?php echo $countDislikes ;?>
                                     </div>
+                                    
+                                    <?php if($_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo'){ ?>
                                     <div id="delete">
-                                            <a href="delete.php?id=<?php echo "".$resultatmessage[$message][0].""; ?>">Supprimer></a>                                       
+                                            <a href="delete.php?id=<?php echo "".$resultatmessage[$message][0].""; ?>">Supprimer</a>                                       
                                     </div>
+                                    <?php }} ?>
+                                    </section>
                                    
                                     <?php
                                         $message++ ;

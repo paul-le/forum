@@ -66,7 +66,8 @@
                     <?php }
                             } else { ?>
                         <span id="profiltext"><a href="profil.php?id=<?php echo "".$_SESSION['id'].""; ?>"> Profil </a></span>
-                        <a id="boutondeco" href="logout.php"><img id="imglogout" src="images/deconnexion.png"></a>
+                        <a id="boutondeco" href="logout.php"><img id="imglogout" src="images/deconnexion.png"></a><br>
+                        <a href="membre.php">Liste des membres</a>
                     <?php } ?>
                     </section>
             </section>

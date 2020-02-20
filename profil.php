@@ -13,6 +13,10 @@
     $requeteRole1 = "SELECT role FROM utilisateurs WHERE id = '".$_GET['id']."'";
     $queryRole1 = mysqli_query($connexion,$requeteRole1);
     $resultatRole1 = mysqli_fetch_all($queryRole1);
+    $requeteMessageProfil = "SELECT * FROM messagesthreads WHERE id_utilisateur = '".$_GET['id']."'";
+    $queryMessageProfil = mysqli_query($connexion,$requeteMessageProfil);
+    $resultatMessageProfil = mysqli_fetch_all($queryMessageProfil);
+    $resultatMessageProfilCount = count($resultatMessageProfil);
 
     if(isset($_GET['id']))
     {
@@ -38,6 +42,7 @@
     <body>
     <?php include('header.php'); ?>
         <main>
+        <section id="profilfullflex">
             <section id="partiegaucheprofil">
                 <section id="partiegaucheprofilflex">
                     <h1 id="infosprofils">Infos Profil <?php echo $resultatRole1[0][0]; ?> </h1>
@@ -68,7 +73,7 @@
 	                    <?php } else {
                             echo $resultatInfosProfil['login'];
                         } ?>
-                        <?php if($_SESSION['login'] == 'admin' && $_GET['id'] != 1){ ?>
+                        <?php if($_SESSION['role'] == 'admin' && $_GET['id'] != 1){ ?>
 	                    <label> Rôle du membre : </label><br>
                         <input type="text" name="roleinput" placeholder = "<?php echo $resultatRole1[0][0] ; ?> "><br>
                         <input type="submit" value="Modifier" name="modifierrole" />
@@ -79,9 +84,37 @@
                 </section>
             </section>
             <section id="partiedroiteprofil">
+                <section>
+                <h3>
+                    Messages envoyés :
+                </h3>
+                <article>
+                    <?php 
+
+                    $m = 0;
+                    while($m != $resultatMessageProfilCount)
+                    {
+                        echo "".$resultatMessageProfil[$m][3]." envoyé le ".$resultatMessageProfil[$m][4]."<br>";
+                        $m++;
+                    }
+                     ?>
+                </article>
+                </section>
+            </section>
             </section>
 
             <?php 
+
+                if(isset($_POST['modifierrole']))
+                {
+                    if(isset($_POST['roleinput']))
+                    {
+                        $roleUp = $_POST['roleinput'];
+                        $requeteRoleUpdate = "UPDATE utilisateurs SET role = \"$roleUp\" WHERE utilisateurs.id = '".$_GET['id']."'";
+                        $queryRoleUpdate = mysqli_query($connexion,$requeteRoleUpdate);
+                        header('Location:profil.php?id='.$_GET['id'].'');
+                        }
+                }
 
                 if(isset($_POST['modifier']))
                 {
