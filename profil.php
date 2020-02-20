@@ -30,6 +30,16 @@
         $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
         $resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
     }
+
+    if(isset($_POST['modifierrole']))
+    {
+        if(isset($_POST['roleinput']))
+        {
+            $roleUp = $_POST['roleinput'];
+            $requeteRoleUpdate = "UPDATE utilisateurs SET role = \"$roleUp\" WHERE utilisateurs.id = '".$_GET['id']."'";
+            $queryRoleUpdate = mysqli_query($connexion,$requeteRoleUpdate);           
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +89,17 @@
                         <input type="submit" value="Modifier" name="modifierrole" />
                         <?php } else { ?>
 	                    <input type="submit" value="Modifier" name="modifier" /><br>
+                        <?php } 
+                        
+                        if($_SESSION['role'] == 'Admin' && $_GET['id'] != 1){ ?>
+	                    <label> Rôle du membre : </label><br>
+                        <input type="text" name="roleinput"><br>
+                        <input type="submit" value="Modifier" name="modifierrole" />
                         <?php } ?>
-                    </form>  
+                        <?php if($_GET['id'] == $_SESSION['id']){ ?>
+                        <input type="submit" value="Modifier" name="modifier" /><br>
+                        <?php } ?>
+                        </form>  
                 </section>
             </section>
             <section id="partiedroiteprofil">
@@ -97,7 +116,7 @@
                         echo "".$resultatMessageProfil[$m][3]." envoyé le ".$resultatMessageProfil[$m][4]."<br>";
                         $m++;
                     }
-                     ?>
+                    ?>
                 </article>
                 </section>
             </section>

@@ -120,31 +120,39 @@
                     <section class="toastpoussage2">
                         <article class="toastpoussage3">
                             <?php 
+                            
 
                                 
-                                $connexion = mysqli_connect("localhost","root","","forum");
-                                $allThread = "SELECT nom FROM thread WHERE id_topic = ".$resultatidtopic[$i][0]."";
-                                
-                                $queryThread = mysqli_query($connexion,$allThread) ;
-                                $resultallThread = mysqli_fetch_all($queryThread) ;
+                            $connexion = mysqli_connect("localhost","root","","forum");
+                            $allThread = "SELECT nom FROM thread WHERE id_topic = ".$resultatidtopic[$i][0]."";
+                            
+                            $queryThread = mysqli_query($connexion,$allThread) ;
+                            $resultallThread = mysqli_fetch_all($queryThread) ;
 
-                                $countThread = count($resultallThread) ;
-                                echo $countThread." Sujet";
-
+                            $countThread = count($resultallThread) ;
+                            echo $countThread." Sujet";
 
                             ?>
                         </article>
                     </section>
                     <section class="toastpoussage4";>
                         <article class="toastpoussage5">
-                             <?php 
+                              <?php 
                              
-                             if(isset($topicid[$i][0]) && isset($resultatThread1[$i][2]))
+                             $idtoto = $resultatidtopic[$i][0];
+                             $connexion = mysqli_connect("localhost","root","","forum");
+                             $allThread = "SELECT nom FROM thread WHERE id_topic = $idtoto ORDER BY id ASC LIMIT 1";
+                             
+                             $queryThread = mysqli_query($connexion,$allThread) ;
+                             $resultallThread = mysqli_fetch_all($queryThread,MYSQLI_ASSOC);
+                             if($resultallThread != false){
+                                $resu = $resultallThread[0]['nom'];
+                                echo "Dernier thread créer ".$resu. "";
+                             }
+                             else
                              {
-                             if($topicid[$i][0] == $resultatThread1[$i][1])
-                            {
-                                echo "Dernier thread créer".$resultatThread1[$i][2].".";
-                            } else { echo "Aucun thread"; }} ?>
+                                 echo "Aucun thread.";
+                             } ?>
                         </article>
                     </section>
                     </section>
