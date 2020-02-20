@@ -82,7 +82,7 @@
                     </section>
                     <section id="topicflex3">
                         <article>
-                            <?php echo "".$resultatmeta2."" ?>
+                            <?php echo "".$resultatmeta2."" ; ?>
                         </article>
                     </section>
                     </section>

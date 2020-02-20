@@ -2,13 +2,13 @@
 
     session_start();
     $connexion = mysqli_connect("localhost", "root","","forum");
-    $requetetopic = "SELECT nom,description FROM topic";
+    $requetetopic = "SELECT nom,description FROM topic ORDER BY id DESC";
     $query = mysqli_query($connexion,$requetetopic);
     $resultat = mysqli_fetch_all($query);
 
     $topicscounter = count($resultat);
 
-    $topicid= "SELECT id FROM topic";
+    $topicid= "SELECT id FROM topic ORDER BY id DESC";
     $queryidtopic = mysqli_query($connexion,$topicid);
     $resultatidtopic = mysqli_fetch_all($queryidtopic);
 
