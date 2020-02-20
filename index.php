@@ -141,7 +141,7 @@
                              
                              $idtoto = $resultatidtopic[$i][0];
                              $connexion = mysqli_connect("localhost","root","","forum");
-                             $allThread = "SELECT nom FROM thread WHERE id_topic = $idtoto ORDER BY id ASC LIMIT 1";
+                             $allThread = "SELECT nom FROM thread WHERE id_topic = $idtoto ORDER BY id DESC LIMIT 1";
                              
                              $queryThread = mysqli_query($connexion,$allThread) ;
                              $resultallThread = mysqli_fetch_all($queryThread,MYSQLI_ASSOC);
