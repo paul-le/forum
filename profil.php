@@ -83,22 +83,14 @@
 	                    <?php } else {
                             echo $resultatInfosProfil['login'];
                         } ?>
-                        <?php if($_SESSION['role'] == 'admin' && $_GET['id'] != 1){ ?>
+                        <?php if($_SESSION['role'] == 'Admin' && $_GET['id'] != 1){ ?>
 	                    <label> Rôle du membre : </label><br>
                         <input type="text" name="roleinput" placeholder = "<?php echo $resultatRole1[0][0] ; ?> "><br>
                         <input type="submit" value="Modifier" name="modifierrole" />
                         <?php } else { ?>
 	                    <input type="submit" value="Modifier" name="modifier" /><br>
                         <?php } 
-                        
-                        if($_SESSION['role'] == 'Admin' && $_GET['id'] != 1){ ?>
-	                    <label> Rôle du membre : </label><br>
-                        <input type="text" name="roleinput"><br>
-                        <input type="submit" value="Modifier" name="modifierrole" />
-                        <?php } ?>
-                        <?php if($_GET['id'] == $_SESSION['id']){ ?>
-                        <input type="submit" value="Modifier" name="modifier" /><br>
-                        <?php } ?>
+                        ?>
                         </form>  
                 </section>
             </section>
