@@ -21,7 +21,7 @@
     {   
         $messageenvoye= $_POST['messagethread'];
         $idthread="".$_GET['id']."";
-        $requeteinsertmessagethread ="INSERT INTO messagesthreads (id_thread,id_utilisateur,messages,date) VALUES ('".$_GET['id']."','".$_SESSION['id']."' , '".$messageenvoye."','".$date."')";
+        $requeteinsertmessagethread ="INSERT INTO messagesthreads (id_thread,id_utilisateur,messages,date) VALUES ('".$_GET['id']."','".$_SESSION['id']."' , '".addslashes($messageenvoye)."','".$date."')";
         echo $requeteinsertmessagethread;
         $queryinsertmessagethread = mysqli_query($connexion,$requeteinsertmessagethread);
         header('Location:thread.php?id='.$_GET['id'].'');
@@ -103,7 +103,7 @@
                                         <a href="vote.php?t=2&id=<?php echo "".$resultatmessage[$message][0].""; ?>"><img src="Images/thumbdown.png"></a><?php echo $countDislikes ;?>
                                     </div>
                                     
-                                    <?php if($_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo'){ ?>
+                                    <?php if($_SESSION['role'] == "Admin" || $_SESSION['role'] == 'Modo'){ ?>
                                     <div id="delete">
                                             <a href="delete.php?id=<?php echo "".$resultatmessage[$message][0].""; ?>">Supprimer</a>                                       
                                     </div>

@@ -2,10 +2,16 @@
 
     session_start();
     $connexion = mysqli_connect("localhost", "root","","forum");
-    $requetetopic = "SELECT nom,description FROM topic ORDER BY id DESC";
+    $requetetopic = "SELECT nom,description,etat FROM topic ORDER BY id DESC";
     $query = mysqli_query($connexion,$requetetopic);
     $resultat = mysqli_fetch_all($query);
+
+    $requetetopic2 = "SELECT nom,description,etat FROM topic WHERE etat = 'public' ORDER BY id DESC";
+    $query2 = mysqli_query($connexion,$requetetopic2);
+    $resultat2 = mysqli_fetch_all($query2);
+
     $topicscounter = count($resultat);
+    $topicscounter2 = count($resultat2);
     $topicid= "SELECT id FROM topic ORDER BY id DESC";
     $queryidtopic = mysqli_query($connexion,$topicid);
     $resultatidtopic = mysqli_fetch_all($queryidtopic);
@@ -95,69 +101,153 @@
                 </section>
                 <?php 
 
+                   
                     
-                    $i = 0;
-                    while($i != $topicscounter)
+                    if(isset($_SESSION['login']) && ($_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo'))
                     {
-                        $resultatmeta = utf8_encode($resultat[$i][0]);
-                        $resultatmeta2 = utf8_encode($resultat[$i][1]);
-                    ?>
-                    <section id="endessousdutitreflex">
-                        <section id="topicicon">
-                            <img src="Images/nonewmessage.png">
-                        </section> 
-                    <section id="topicflex1">
-                        <section id="topicflex2">
-                            <article class="toastpoussage"><a href="topic.php?id=<?php echo $resultatidtopic[$i][0];?>"><?php echo $resultatmeta;?></a></article>
-                    </section>
-                    <section id="topicflex3">
-                        <article>
-                            <?php echo "".$resultatmeta2."" ?>
-                        </article>
-                    </section>
-                    </section>
-                    <section class="toastpoussage2">
-                        <article class="toastpoussage3">
-                            <?php 
+                        $i = 0;
+                        while($i != $topicscounter)
+                        {
+                            $resultatmeta = utf8_encode($resultat[$i][0]);
+                            $resultatmeta2 = utf8_encode($resultat[$i][1]);
                             
-
+                        ?>
+                        <section id="endessousdutitreflex">
+                            <section id="topicicon">
+                                <img src="Images/nonewmessage.png">
+                            </section> 
+                        <section id="topicflex1">
+                            <section id="topicflex2">
+                                <article class="toastpoussage">
+                                    
+                                    <a href="topic.php?id=<?php echo $resultatidtopic[$i][0];?>"><?php echo $resultatmeta;?></a>
+                                        
+                                        
+                                </article>
+                        </section>
+                        <section id="topicflex3">
+                            <article>
+                                <?php echo "".$resultatmeta2."" ?>
+                            </article>
+                        </section>
+                        </section>
+                        <section class="toastpoussage2">
+                            <article class="toastpoussage3">
+                                <?php 
                                 
-                            $connexion = mysqli_connect("localhost","root","","forum");
-                            $allThread = "SELECT nom FROM thread WHERE id_topic = ".$resultatidtopic[$i][0]."";
+
+                                    
+                                $connexion = mysqli_connect("localhost","root","","forum");
+                                $allThread = "SELECT nom FROM thread WHERE id_topic = ".$resultatidtopic[$i][0]."";
+                                
+                                $queryThread = mysqli_query($connexion,$allThread) ;
+                                $resultallThread = mysqli_fetch_all($queryThread) ;
+
+                                $countThread = count($resultallThread) ;
+                                echo $countThread." Sujet";
+
+                                ?>
+                            </article>
+                        </section>
+                        <section class="toastpoussage4";>
+                            <article class="toastpoussage5">
+                                <?php 
+                                
+                                $idtoto = $resultatidtopic[$i][0];
+                                $connexion = mysqli_connect("localhost","root","","forum");
+                                $allThread = "SELECT nom FROM thread WHERE id_topic = $idtoto ORDER BY id DESC LIMIT 1";
+                                
+                                $queryThread = mysqli_query($connexion,$allThread) ;
+                                $resultallThread = mysqli_fetch_all($queryThread,MYSQLI_ASSOC);
+                                if($resultallThread != false){
+                                    $resu = $resultallThread[0]['nom'];
+                                    echo "Dernier thread créer ".$resu. "";
+                                }
+                                else
+                                {
+                                    echo "Aucun thread.";
+                                } ?>
+                            </article>
+                        </section>
+                        </section>
+                        <?php
+                        $i++;
+                        } 
+                    }
+                    elseif(!isset($_SESSION['login']) ||( isset($_SESSION['login']) && isset($_SESSION['role']) == 'Membre' ))
+                    {
+                        
+                        $i = 0;
+                        while($i != $topicscounter2)
+                        {
+                            $resultatmeta = utf8_encode($resultat2[$i][0]);
+                            $resultatmeta2 = utf8_encode($resultat2[$i][1]);
                             
-                            $queryThread = mysqli_query($connexion,$allThread) ;
-                            $resultallThread = mysqli_fetch_all($queryThread) ;
+                        ?>
+                        <section id="endessousdutitreflex">
+                            <section id="topicicon">
+                                <img src="Images/nonewmessage.png">
+                            </section> 
+                        <section id="topicflex1">
+                            <section id="topicflex2">
+                                <article class="toastpoussage">
+                                    
+                                    <a href="topic.php?id=<?php echo $resultatidtopic[$i][0];?>"><?php echo $resultatmeta;?></a>
+                                        
+                                        
+                                </article>
+                        </section>
+                        <section id="topicflex3">
+                            <article>
+                                <?php echo "".$resultatmeta2."" ?>
+                            </article>
+                        </section>
+                        </section>
+                        <section class="toastpoussage2">
+                            <article class="toastpoussage3">
+                                <?php 
+                                
 
-                            $countThread = count($resultallThread) ;
-                            echo $countThread." Sujet";
+                                    
+                                $connexion = mysqli_connect("localhost","root","","forum");
+                                $allThread = "SELECT nom FROM thread WHERE id_topic = ".$resultatidtopic[$i][0]."";
+                                
+                                $queryThread = mysqli_query($connexion,$allThread) ;
+                                $resultallThread = mysqli_fetch_all($queryThread) ;
 
-                            ?>
-                        </article>
-                    </section>
-                    <section class="toastpoussage4";>
-                        <article class="toastpoussage5">
-                              <?php 
-                             
-                             $idtoto = $resultatidtopic[$i][0];
-                             $connexion = mysqli_connect("localhost","root","","forum");
-                             $allThread = "SELECT nom FROM thread WHERE id_topic = $idtoto ORDER BY id DESC LIMIT 1";
-                             
-                             $queryThread = mysqli_query($connexion,$allThread) ;
-                             $resultallThread = mysqli_fetch_all($queryThread,MYSQLI_ASSOC);
-                             if($resultallThread != false){
-                                $resu = $resultallThread[0]['nom'];
-                                echo "Dernier thread créer ".$resu. "";
-                             }
-                             else
-                             {
-                                 echo "Aucun thread.";
-                             } ?>
-                        </article>
-                    </section>
-                    </section>
-<?php
-$i++;
-} ?>
+                                $countThread = count($resultallThread) ;
+                                echo $countThread." Sujet";
+
+                                ?>
+                            </article>
+                        </section>
+                        <section class="toastpoussage4";>
+                            <article class="toastpoussage5">
+                                <?php 
+                                
+                                $idtoto = $resultatidtopic[$i][0];
+                                $connexion = mysqli_connect("localhost","root","","forum");
+                                $allThread = "SELECT nom FROM thread WHERE id_topic = $idtoto ORDER BY id DESC LIMIT 1";
+                                
+                                $queryThread = mysqli_query($connexion,$allThread) ;
+                                $resultallThread = mysqli_fetch_all($queryThread,MYSQLI_ASSOC);
+                                if($resultallThread != false){
+                                    $resu = $resultallThread[0]['nom'];
+                                    echo "Dernier thread créer ".$resu. "";
+                                }
+                                else
+                                {
+                                    echo "Aucun thread.";
+                                } ?>
+                            </article>
+                        </section>
+                        </section>
+                        <?php
+                        $i++;
+                        } 
+                    }
+                       
+                ?>
                 <section id="infosmainsection">
                     <section id="informationsectionflex">
                         <h1 id="infosh1">&nbsp;&nbsp;Informations</h1>
@@ -169,7 +259,7 @@ $i++;
                     <article>
                         <?php 
                         if((isset($_SESSION['login']))){
-                        if($_SESSION['role'] == 'Admin' || ($_SESSION['role'] == 'Modo'))
+                        if($_SESSION['role'] == "Admin" || ($_SESSION['role'] == 'Modo'))
                         { ?>
                         <a href="creertopic.php"><img id="creertopicbouton" src="Images/boutoncreertopic.png"></a>
                         <?php } else {}} ?>
