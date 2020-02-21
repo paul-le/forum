@@ -12,7 +12,7 @@
 		$requeteCountUser = "SELECT count(*) as toast FROM utilisateurs WHERE login = \"$login\" ";
 		$queryCountUser = mysqli_query($connexion, $requeteCountUser) ;
 		$resultatCountUser = mysqli_fetch_array($queryCountUser) ;
- 
+
 		$requeteHash = "SELECT password FROM utilisateurs WHERE login = \"$login\"";
 		$queryHash = mysqli_query($connexion, $requeteHash) ;
 		$resultatHash = mysqli_fetch_array($queryHash) ;
@@ -20,14 +20,19 @@
 		$count = $resultatCountUser ;
 
 		$requeteID = "SELECT id FROM utilisateurs WHERE login =\"$login\" ";
-		$qeuryID = mysqli_query($connexion, $requeteID) ;
+		$queryID = mysqli_query($connexion, $requeteID) ;
 		$resultatID = mysqli_fetch_all($queryID) ;
+
+		$requeteRole = "SELECT role FROM utilisateurs WHERE login =\"$login\" ";
+		$queryRole = mysqli_query($connexion, $requeteRole);
+		$resultatRole = mysqli_fetch_all($queryRole);
 
 		if ($count > 0 && password_verify($_POST['password'],$resultatHash['password'])) 
 		{
-			$_SESSION['login'] = $login ;
-			$_SESSION['id'] = $requeteID[0] ;
-			header('Location : index.php') ;
+			$_SESSION['login'] = $login;
+			$_SESSION['id'] = $requeteID[0];
+			$_SESSION['role'] = $resultatRole[0];
+			// header('Location : index.php');
 		}
 		else
 		{

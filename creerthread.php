@@ -6,12 +6,13 @@
     {
         $nomthread = $_POST['threadname'];
         $descthread = $_POST['threaddescription'];
-        $requeteinsertthread = "INSERT INTO thread (nom,description,id_topic) VALUES('$nomthread','$descthread','".$_GET['id']."')";
-        $querythreadcreation =  mysqli_query($connexion, $requeteinsertthread) ;
+        $requeteinsertthread = "INSERT INTO thread (nom,description,id_topic,etat) VALUES('".addslashes($nomthread)."','".addslashes($descthread)."','".$_GET['id']."','".$_POST['etat']."')";
+        $querythreadcreation = mysqli_query($connexion, $requeteinsertthread) ;
+        header('Location:index.php');
     }
 ?>
 
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html>
     <head>
         <title>Forum index</title>
@@ -27,6 +28,10 @@
             <form method="post" action="">
                 <input type="text" name="threadname" placeholder="Nom du thread" required>
                 <input type="text" name="threaddescription" placeholder="Description du thread" required>
+                <select type="post" name="etat"><br>
+                    <option value="prive">Prive</option>
+                    <option value="public">Public</option>
+                </select>
                 <input type="submit" name="validationthread" value="Valider">
             </form>
             <?php  } else { echo "Vous devez être admin pour créer un thread"; } ?>

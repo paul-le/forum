@@ -4,15 +4,15 @@
 	$serverName = "localhost";
     $userName = "root";
     $passwordServer = "";
-    $nameTable = "forum"; 
+    $nameTable = "forum";
     $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
 
-	if (isset($_GET['id']) AND $_SESSION['login'] == "admin" ) 
+	if (isset($_GET['id']) AND $_SESSION['role'] == "Admin" ) 
 	{
-		$deleteMessage = "DELETE FROM  messagesthreads WHERE messagesthreads.id = '".$_GET['id']."' ";
+		$deleteMessage = "DELETE FROM `messagesthreads` WHERE `messagesthreads`.`id` = '".$_GET['id']."' ";
 		$queryMessage = mysqli_query($connexion, $deleteMessage) ;
-		echo $deleteMessage;
-		header('Location:thread.php?id=5');
+
+		header('Location:index.php');
 	}
 	else
 	{

@@ -16,7 +16,7 @@
 ?>
 
 <!DOCTYPE html>
-<html> 
+<html>
 <head>
 	<title>Membre</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -24,16 +24,16 @@
 <body>
 	<?php include('header.php'); ?>
 	<main>
-		<?php 
-		if (isset($_SESSION['login'])) 
-			{ ?>
+		<?php if(isset($_SESSION['login'])){ ?>
 		<table>
     		<tr>
         		<th>ID</th>
         		<th>Login</th>
         		<th>Age</th>
-    		</tr>
+			</tr>
+		<?php } else {} ?>
 		<?php
+		if(isset($_SESSION['login'])){
 			while($membre = mysqli_fetch_assoc($queryUser)) { ?>
 
 			<tr>
@@ -41,14 +41,7 @@
 				<td><a href="profil.php?id=<?php echo "".$membre['id']."";?>"><?php echo $membre['login']; ?></td></a> 
 				<td><?php echo $membre['age']; ?></td>
 			</tr>
-		<?php 
-				}
-			}
-			else
-			{
-				echo "Vous n'etes pas connectez"; 
-			}
-		 ?>
+		<?php }}else{ echo "Vous devez être connecter pour avoir accès à cette page !"; } ?>
 	</main>
 
 </body>

@@ -10,12 +10,12 @@
 		$passwordHash = password_hash($password, PASSWORD_BCRYPT, array('cost' => 12));
 	}
 
-	if(isset($_POST['inscription']) == true && $_POST['password'] == $_POST['confirmationpassword'] && isset($_POST['login']) && strlen($_POST['login']) != 0 && isset($_POST['password']) && strlen($_POST['password']) != 0 && isset($_POST['confirmationpassword']) && strlen($_POST['confirmationpassword']) != 0) 
+	if(isset($_POST['inscription']) == true && $_POST['password'] == $_POST['confirmationpassword'] && isset($_POST['login']) && strlen($_POST['login']) != 0 && isset($_POST['password']) && strlen($_POST['password']) != 0 && isset($_POST['confirmationpassword']) && strlen($_POST['confirmationpassword']) != 0)
 	{
 		$requeteUser = "SELECT * FROM utilisateurs";
         $queryUser = mysqli_query($connexion , $requeteUser);
         $resultatUser = mysqli_fetch_all($queryUser);
- 
+
 		foreach ($resultatUser as $row_number => $loginExist) 
 		{
 			if ($resultatUser[$row_number][1] == $_POST['login'])
@@ -29,9 +29,8 @@
 			$nameLogin = $_POST['login'] ;
 			$ageUser = $_POST['age'] ;
 
-			$requeteInsertUser = "INSERT INTO utilisateurs (login, password, age, avatar) VALUES('$nameLogin', '$passwordHash', '$ageUser', 'VIDE')" ;
+			$requeteInsertUser = "INSERT INTO utilisateurs (login, password, age, avatar, role) VALUES('$nameLogin', '$passwordHash', '$ageUser', 'VIDE' , 'Membre')" ;
 			$queryInsertUser = mysqli_query($connexion, $requeteInsertUser) ;
-            echo $requeteInsertUser;
             header("Location:index.php");
 		}
 		else
