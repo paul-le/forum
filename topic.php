@@ -13,10 +13,10 @@
         $resultatthread = mysqli_fetch_all($queryusers);
         $threadcounter = count($resultatthread);
 
-        $requeteEtatTopic = "SELECT etat FROM topic WHERE id_topic = ".$_GET['id']."";
+        $requeteEtatTopic = "SELECT etat FROM topic WHERE id = ".$_GET['id']."";
         $queryEtatTopic = mysqli_query($connexion, $requeteEtatTopic) ;
-        $resultEtatTopic = mysqli_fetch_all($queryEtatTopic) ;
-
+        $resultEtatTopic = mysqli_fetch_all($queryEtatTopic);
+        var_dump($resultEtatTopic);
         
 
 
@@ -124,7 +124,8 @@
                         
                     </article>
                 </section>
-                <?php if(isset($_SESSION['login']) && ($_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo' || $_SESSION['role'] == 'Membre') && $resultEtatTopic[0] == 'public') { ?>
+                <?php if(isset($_SESSION['login']) && $resultEtatTopic[0] == 'prive' || $resultEtatTopic[0] == 'public' && $_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo')
+                { ?>
                 <a href="creerthread.php?id=<?php echo "".$_GET['id']."";?>"><img id="creertopicbouton" src="Images/boutoncreerthread.png"></a>
                 <?php } ?>
                
