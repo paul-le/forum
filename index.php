@@ -174,7 +174,7 @@
                         $i++;
                         } 
                     }
-                    elseif(!isset($_SESSION['login']) ||( isset($_SESSION['login']) && isset($_SESSION['role']) == 'Membre' ))
+                    elseif( (!isset($_SESSION['login']) || ( isset($_SESSION['login']) && $_SESSION['role'] == 'Membre' )))
                     {
                         
                         $i = 0;

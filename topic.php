@@ -124,7 +124,7 @@
                         
                     </article>
                 </section>
-                <?php if(isset($_SESSION['login']) && $resultEtatTopic[0] == 'prive' || $resultEtatTopic[0] == 'public' && $_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo')
+                <?php if(isset($_SESSION['login']))
                 { ?>
                 <a href="creerthread.php?id=<?php echo "".$_GET['id']."";?>"><img id="creertopicbouton" src="Images/boutoncreerthread.png"></a>
                 <?php } ?>
