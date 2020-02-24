@@ -12,7 +12,7 @@
         $requeteinserttopic = "INSERT INTO topic (nom,description,etat) VALUES('".addslashes($nomtopic)."','".addslashes($desctopic)."','".$_POST['etat']."')";
         $querytopiccreation = mysqli_query($connexion, $requeteinserttopic) ;
         echo $requeteinserttopic;
-        //header('Location:index.php');
+        header('Location:index.php');
     }
 ?>
 
@@ -27,18 +27,16 @@
     <?php include('header.php'); ?>
         <main>
             <?php     
-                if(isset($_SESSION['login']) && $_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo')
+                if(isset($_SESSION['login']) && ($_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo'))
                 { ?>
-            <form method="post" action="">
-                <input type="text" name="topicname" placeholder="Nom du topic" required>
-                <input type="text" name="topicdescription" placeholder="Description du topic" required>
+            <form class="formcreationtopic" method="post" action="">
+                <input type="text" name="topicname" placeholder="Nom du topic" required><br>
+                <input type="text" name="topicdescription" placeholder="Description du topic" required><br>
                 <select type="post" name="etat"><br>
                     
                     <option value="prive">Prive</option>
                     <option value="public">Public</option>
-                </select>
-
-             
+                </select><br>
                 <input type="submit" name="validationtopic" value="Valider">
             </form>
             <?php  } else { echo "Vous devez être admin pour créer un topic"; } ?>
