@@ -16,7 +16,7 @@
         $requeteEtatTopic = "SELECT etat FROM topic WHERE id = ".$_GET['id']."";
         $queryEtatTopic = mysqli_query($connexion, $requeteEtatTopic) ;
         $resultEtatTopic = mysqli_fetch_all($queryEtatTopic);
-        var_dump($resultEtatTopic);
+       
         
 
 
@@ -27,8 +27,7 @@
         $queryidtopic = mysqli_query($connexion,$topicid);
         $resultatidtopic = mysqli_fetch_all($queryidtopic);
 
-        var_dump($_SESSION['login']) ;
-        var_dump($_SESSION['role']) ;
+      
 
     }
     

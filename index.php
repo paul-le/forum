@@ -15,6 +15,11 @@
     $topicid= "SELECT id FROM topic ORDER BY id DESC";
     $queryidtopic = mysqli_query($connexion,$topicid);
     $resultatidtopic = mysqli_fetch_all($queryidtopic);
+
+    $topicId2 = "SELECT id FROM topic WHERE etat = 'public' ORDER BY id DESC" ;
+    $queryId2 = mysqli_query($connexion, $topicId2) ;
+    $resultatidtopic2 = mysqli_fetch_all($queryId2);
+
     $requetePersonnesInscrites = "SELECT login FROM utilisateurs";
     $queryPersonnesInscrites = mysqli_query($connexion,$requetePersonnesInscrites);
     $resultatPersonnesInscrites = mysqli_fetch_all($queryPersonnesInscrites);
@@ -106,6 +111,7 @@
                     if(isset($_SESSION['login']) && ($_SESSION['role'] == 'Admin' || $_SESSION['role'] == 'Modo'))
                     {
                         $i = 0;
+
                         while($i != $topicscounter)
                         {
                             $resultatmeta = utf8_encode($resultat[$i][0]);
@@ -121,7 +127,7 @@
                             <section id="topicflex2">
                                 <article class="toastpoussage">
                                     
-                                    <a href="topic.php?id=<?php echo $resultatidtopic[$i][0];?>"><?php echo $resultatmeta;?></a>
+                                    <a href="topic.php?id=<?php echo "".$resultatidtopic[$i][0]."";?>"><?php echo $resultatmeta;?></a>
                                         
                                         
                                 </article>
@@ -179,6 +185,7 @@
                     {
                         
                         $i2 = 0;
+                        
                         while($i2 != $topicscounter2)
                         {
                             $resultatmeta = utf8_encode($resultat2[$i2][0]);
@@ -193,7 +200,7 @@
                             <section id="topicflex2">
                                 <article class="toastpoussage">
                                     
-                                    <a href="topic.php?id=<?php echo $resultatidtopic[$i2][0];?>"><?php echo $resultatmeta;?></a>
+                                    <a href="topic.php?id=<?php echo "".$resultatidtopic2[$i2][0]."";?>"><?php echo $resultatmeta;?></a>
                                         
                                         
                                 </article>
