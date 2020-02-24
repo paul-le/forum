@@ -1,7 +1,7 @@
 <?php 
 
     session_start();
-
+    $getIdVar = $_GET['id'];
     $serverName = "localhost";
     $userName = "root";
     $passwordServer = "";
@@ -10,7 +10,36 @@
     $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_SESSION['id']."'";
     $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
     $resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
-    
+    $requeteRole1 = "SELECT role FROM utilisateurs WHERE id = '".$_GET['id']."'";
+    $queryRole1 = mysqli_query($connexion,$requeteRole1);
+    $resultatRole1 = mysqli_fetch_all($queryRole1);
+    $requeteMessageProfil = "SELECT * FROM messagesthreads WHERE id_utilisateur = '".$_GET['id']."'";
+    $queryMessageProfil = mysqli_query($connexion,$requeteMessageProfil);
+    $resultatMessageProfil = mysqli_fetch_all($queryMessageProfil);
+    $resultatMessageProfilCount = count($resultatMessageProfil);
+
+    if(isset($_GET['id']))
+    {
+        $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_GET['id']."'";
+        $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
+        $resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
+    }
+    else
+    {
+        $requeteInfosProfil = "SELECT * FROM utilisateurs WHERE id = '".$_SESSION['id']."'";
+        $queryInfosProfil = mysqli_query($connexion, $requeteInfosProfil);
+        $resultatInfosProfil = mysqli_fetch_assoc($queryInfosProfil);
+    }
+
+    if(isset($_POST['modifierrole']))
+    {
+        if(isset($_POST['roleinput']))
+        {
+            $roleUp = $_POST['roleinput'];
+            $requeteRoleUpdate = "UPDATE utilisateurs SET role = \"$roleUp\" WHERE utilisateurs.id = '".$_GET['id']."'";
+            $queryRoleUpdate = mysqli_query($connexion,$requeteRoleUpdate);           
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -23,9 +52,11 @@
     <body>
     <?php include('header.php'); ?>
         <main>
+        <section id="profilfullflex">
             <section id="partiegaucheprofil">
                 <section id="partiegaucheprofilflex">
                     <h1 id="infosprofils">Infos Profil</h1>
+                    <h2> Rôle : <?php echo $resultatRole1[0][0]; ?> </h2>
                     <form id="profilform" action="" method="post" enctype="multipart/form-data">
 
                     	<?php
@@ -49,30 +80,60 @@
 	                    <input type="password" name="passwordcon"><br>
 
 	                    <label>Avatar </label><br>
-	                    <input type="file" name="avatar"><br>
+                        <input type="file" name="avatar"><br>
+                        <input type="submit" value="Modifier" name="modifier" /><br>
 	                    <?php } else {
                             echo $resultatInfosProfil['login'];
                         } ?>
-	                    <input type="submit" value="Modifier" name="modifier" /><br>
-                    </form>  
-                </section>
-                <section>
-                    <?php if($_SESSION['login'] == 'admin'){ ?>
-                    <form id="profilform2">
-                    <input type="radio" name="memberrole" value="Admin"checked>
-                    <label for="huey">Admin</label>
-                    <input type="radio" name="memberrole" value="Modo">
-                    <label for="huey">Modo</label>
-                    <input type="radio" name="memberrole" value="Membre">
-                    <label for="huey">Membre</label>
-                    </form>
-                    <?php } ?>
+                        <?php if($_SESSION['role'] == 'Admin'){ ?>
+	                    <label> Rôle du membre : </label><br>
+                        <select type="post" name="roleinput"><br>
+                            <option>Changer de rôle</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Modo">Modo</option>
+                            <option value="Membre">Membre</option>
+                        </select>
+                        <br><input type="submit" value="Modifier le rôle" name="modifierrole" />
+                        <?php } ?>
+                        </form>  
                 </section>
             </section>
             <section id="partiedroiteprofil">
+                <section>
+                <h3>
+                    Messages envoyés :
+                </h3>
+                <article>
+                    <?php 
+
+                    $m = 0;
+                    while($m != $resultatMessageProfilCount)
+                    {
+                        echo "".$resultatMessageProfil[$m][3]." envoyé le ".$resultatMessageProfil[$m][4]."<br>";
+                        $m++;
+                    }
+                    ?>
+                </article>
+                </section>
+            </section>
             </section>
 
             <?php 
+
+                if(isset($_POST['modifierrole']))
+                {
+                    if(isset($_POST['roleinput']) && !empty($_POST['role']))
+                    {
+                        $roleUp = $_POST['roleinput'];
+                        $requeteRoleUpdate = "UPDATE utilisateurs SET role = \"$roleUp\" WHERE utilisateurs.id = '".$_GET['id']."'";
+                        $queryRoleUpdate = mysqli_query($connexion,$requeteRoleUpdate);
+                        header('Location:profil.php?id='.$getIdVar.'');
+                    }
+                }
+                else
+                {
+                    
+                }
 
                 if(isset($_POST['modifier']))
                 {
@@ -110,12 +171,12 @@
                             }
                             if($_POST['password'] != $resultatInfosProfil['password'] && !empty($_POST['password']))
                             {
-                               $password1 = $_POST['password'];
-                               $passwordhash = password_hash($password1, PASSWORD_BCRYPT, array('cost' => 12));
+                                $password1 = $_POST['password'];
+                                $passwordhash = password_hash($password1, PASSWORD_BCRYPT, array('cost' => 12));
                                 $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
-                               $upPass = "UPDATE utilisateurs SET password = \"$passwordhash\" WHERE utilisateurs.password='".$resultatInfosProfil['password']."'";
-                               $result = mysqli_query($connexion, $upPass);
-                               
+                                $upPass = "UPDATE utilisateurs SET password = \"$passwordhash\" WHERE utilisateurs.password='".$resultatInfosProfil['password']."'";
+                                $result = mysqli_query($connexion, $upPass);
+                                header("Location:profil.php?id='".$getIdVar."'");
                             }
                         }
                         if (isset($_FILES['avatar']) AND !empty($_FILES['avatar'])) 

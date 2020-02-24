@@ -20,13 +20,20 @@
 
 		$requeteID = "SELECT id FROM utilisateurs WHERE login =\"$login\" ";
 		$queryID = mysqli_query($connexion, $requeteID) ;
-		$resultatID = mysqli_fetch_all($queryID) ;
+        $resultatID = mysqli_fetch_all($queryID) ;
+        
+        $requeteRole = "SELECT role FROM utilisateurs WHERE login =\"$login\" ";
+		$queryRole = mysqli_query($connexion, $requeteRole);
+        $resultatRole = mysqli_fetch_all($queryRole);
+        
+        
 
 		if ($count > 0 && password_verify($_POST['password'],$resultatHash['password'])) 
 		{
 			$_SESSION['login'] = $login ;
-			$_SESSION['id'] = $resultatID[0][0] ;
-			/*header('Location : index.php')*/ ;
+            $_SESSION['id'] = $resultatID[0][0] ;
+            $_SESSION['role'] = $resultatRole[0][0];
+			// header('Location : index.php') ;
 		}
 		else
 		{
@@ -59,7 +66,8 @@
                     <?php }
                             } else { ?>
                         <span id="profiltext"><a href="profil.php?id=<?php echo "".$_SESSION['id'].""; ?>"> Profil </a></span>
-                        <a id="boutondeco" href="logout.php"><img id="imglogout" src="images/deconnexion.png"></a>
+                        <a id="boutondeco" href="logout.php"><img id="imglogout" src="images/deconnexion.png"></a><br>
+                        <a href="membre.php">Liste des membres</a>
                     <?php } ?>
                     </section>
             </section>
