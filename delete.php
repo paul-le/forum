@@ -12,7 +12,7 @@
 		$deleteMessage = "DELETE FROM `messagesthreads` WHERE `messagesthreads`.`id` = '".$_GET['id']."' ";
 		$queryMessage = mysqli_query($connexion, $deleteMessage) ;
 
-		header('Location:index.php');
+		header('Location:thread.php?id='.$_GET['id'].'');
 	}
 	else
 	{

@@ -176,7 +176,7 @@
                                 $connexion = mysqli_connect("$serverName", "$userName", "$passwordServer", "$nameTable") ;
                                 $upPass = "UPDATE utilisateurs SET password = \"$passwordhash\" WHERE utilisateurs.password='".$resultatInfosProfil['password']."'";
                                 $result = mysqli_query($connexion, $upPass);
-                                header("Location:profil.php?id='".$getIdVar."'");
+                                // header("Location:profil.php?id='".$getIdVar."'");
                             }
                         }
                         if (isset($_FILES['avatar']) AND !empty($_FILES['avatar'])) 
