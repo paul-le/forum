@@ -69,7 +69,7 @@
                     <h1 id="discussionsh1">&nbsp;&nbsp; Discussions</h1>
                 </section>
                 <?php 
-                    if(isset($_SESSION['login']) && $_SESSION['role'] == 'Membre' && $resultEtatTopic[0][0] == 'prive')  
+                    if(isset($_SESSION['login']) && ($resultEtatTopic[0][0] == 'prive') && ($_SESSION['role'] == 'Membre'))  
                     {
                         echo "Vous n'avez pas accès !";
                     }
